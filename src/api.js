@@ -38,3 +38,14 @@ export const getTopics = () => {
             console.log("ERROR!", err);
         });
 };
+
+export const getComments = (article_id) => {
+    return apiConnection
+        .get(`/articles/${article_id}/comments`)
+        .then(({ data: { comments } }) => {
+            return comments;
+        })
+        .catch((err) => {
+            console.log("ERROR!", err);
+        });
+};
