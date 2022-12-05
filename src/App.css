@@ -2,7 +2,7 @@
     /* COLOUR PALETTE */
     --light-shade: #f4f3ed;
     --light-accent: #eba84a;
-    --brand-colour: #9699a5;
+    --brand-colour: #abaebb;
     --dark-accent: #a0685a;
     --dark-shade: #363736;
 }
@@ -19,13 +19,14 @@ body {
 }
 
 .Logo {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
     background-color: var(--light-accent);
     font-weight: bolder;
     text-transform: uppercase;
     display: block;
     height: fit-content;
     font-size: 2rem;
-    /* padding: 10px; */
     text-align: center;
 }
 .Logo a {
@@ -82,6 +83,33 @@ body {
 }
 .Articles li .Articles--topic {
     color: var(--dark-accent);
+}
+
+.Article h1 {
+    font-size: 1.5em;
+}
+.Article .author-and-topic {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+.Article .author-and-topic p {
+    padding: 10px 0;
+    font-size: 1.1em;
+    color: var(--dark-accent);
+}
+.Article .author-and-topic strong {
+    color: var(--dark-shade);
+}
+.Article img {
+    width: 100%;
+    border: 2px black solid;
+    border-radius: 3px;
+}
+.Article .article-body {
+    padding: 10px 0;
+    font-size: 1.1em;
 }
 
 .Footer {
