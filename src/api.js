@@ -21,12 +21,20 @@ export const getArticle = (article_id) => {
     return apiConnection
         .get(`/articles/${article_id}`)
         .then(({ data: { article } }) => {
-            console.log(article);
+            return article;
+        })
+        .catch((err) => {
+            console.log("ERROR!", err);
         });
 };
 
 export const getTopics = () => {
-    return apiConnection.get("/topics").then(({ data: { topics } }) => {
-        return topics;
-    });
+    return apiConnection
+        .get("/topics")
+        .then(({ data: { topics } }) => {
+            return topics;
+        })
+        .catch((err) => {
+            console.log("ERROR!", err);
+        });
 };
