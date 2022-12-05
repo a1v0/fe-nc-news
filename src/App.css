@@ -2,7 +2,7 @@
     /* COLOUR PALETTE */
     --light-shade: #f4f3ed;
     --light-accent: #eba84a;
-    --brand-colour: #9699a5;
+    --brand-colour: #abaebb;
     --dark-accent: #a0685a;
     --dark-shade: #363736;
 }
@@ -19,6 +19,8 @@ body {
 }
 
 .Logo {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
     background-color: var(--light-accent);
     font-weight: bolder;
     text-transform: uppercase;
@@ -26,7 +28,6 @@ body {
     height: fit-content;
     font-size: 2rem;
     text-align: center;
-    padding: 10px;
 }
 .Logo a {
     display: block;
@@ -37,19 +38,34 @@ body {
     padding: 0.5rem 0;
     height: 3rem;
     width: 3rem;
-    vertical-align: middle;
     display: inline-block;
     margin-right: 10px;
+    text-align: center;
 }
 .Logo a span.Logo-news {
     background-color: transparent;
     color: var(--dark-shade);
 }
 
+.Nav {
+    background-color: var(--brand-colour);
+    display: flex;
+    justify-content: space-between;
+}
+.Nav ul li {
+    list-style-type: none;
+    padding: 5px 0;
+    display: block;
+}
+.Nav ul li a {
+    color: var(--dark-accent);
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
 .Articles {
     list-style-type: none;
     display: block;
-    padding: 10px;
 }
 .Articles li {
     margin: 10px 0;
@@ -69,12 +85,68 @@ body {
     color: var(--dark-accent);
 }
 
+.Article h1 {
+    font-size: 1.5em;
+}
+.Article .author-and-topic {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+.Article .author-and-topic p {
+    padding: 10px 0;
+    font-size: 1.1em;
+    color: var(--dark-accent);
+}
+.Article .author-and-topic strong {
+    color: var(--dark-shade);
+}
+.Article section {
+    display: block;
+}
+.Article section img {
+    width: 100%;
+    border: 2px black solid;
+    border-radius: 3px;
+}
+.Article section .article-body {
+    padding: 10px 0;
+    font-size: 1.1em;
+}
+
+.Footer {
+    background-color: var(--light-accent);
+}
+.Footer a {
+    text-decoration: none;
+    color: var(--dark-shade);
+}
+.Footer a:hover {
+    text-decoration: underline;
+}
+
+/* PADDING FOR STRUCTURAL COMPONENTS */
+.Footer,
+.Logo,
+.Nav,
+.Articles,
+.Article {
+    padding: 10px;
+}
+
 @media only screen and (min-width: 500px) {
     .Logo {
         text-align: left;
     }
-    .Logo a span {
-        text-align: center;
+    .Nav ul li {
+        border-left: 2px var(--dark-shade) solid;
+        padding: 0 15px;
+        display: inline-block;
+    }
+    .Nav ul li:nth-child(1) {
+        border-left: none;
+        padding-left: 0;
     }
 
     .Articles {
@@ -91,5 +163,31 @@ body {
     }
     .Articles li img {
         width: 100%;
+    }
+
+    .Article section {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+    .Article section p {
+        grid-column: 1 / 3;
+        grid-row: 1/2;
+        margin-right: 15px;
+    }
+    .Article section img {
+        margin: 10px 0px;
+        grid-column: 3 / 4;
+        grid-row: 1/2;
+    }
+
+    /* PADDING FOR STRUCTURAL COMPONENTS */
+    .Footer,
+    .Logo,
+    .Nav,
+    .Articles,
+    .Article {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }

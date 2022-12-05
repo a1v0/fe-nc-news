@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getArticles } from "../api";
 import PlaceholderImage from "../misc/elementor-placeholder-image.jpg";
 
 export default function Articles() {
+    const { topic_id } = useParams();
     const [articles, setArticles] = useState([]);
+
     useEffect(() => {
-        getArticles().then((articles) => {
+        getArticles(topic_id).then((articles) => {
             setArticles(articles);
         });
-    }, []);
+    }, [topic_id]);
     return (
         <ul className="Articles">
             {articles.map((article) => {
