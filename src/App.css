@@ -25,8 +25,8 @@ body {
     display: block;
     height: fit-content;
     font-size: 2rem;
-    text-align: center;
     padding: 10px;
+    text-align: center;
 }
 .Logo a {
     display: block;
@@ -37,13 +37,30 @@ body {
     padding: 0.5rem 0;
     height: 3rem;
     width: 3rem;
-    vertical-align: middle;
     display: inline-block;
     margin-right: 10px;
+    text-align: center;
 }
 .Logo a span.Logo-news {
     background-color: transparent;
     color: var(--dark-shade);
+}
+
+.Nav {
+    background-color: var(--brand-colour);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.Nav ul li {
+    list-style-type: none;
+    padding: 5px;
+    display: block;
+}
+.Nav ul li a {
+    color: var(--dark-accent);
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
 .Articles {
@@ -84,9 +101,19 @@ body {
 @media only screen and (min-width: 500px) {
     .Logo {
         text-align: left;
+        padding-left: 20px;
     }
-    .Logo a span {
-        text-align: center;
+    .Nav {
+        padding: 10px 20px;
+    }
+    .Nav ul li {
+        border-left: 2px var(--dark-shade) solid;
+        padding: 0 15px;
+        display: inline-block;
+    }
+    .Nav ul li:nth-child(1) {
+        border-left: none;
+        padding-left: 0;
     }
 
     .Articles {
