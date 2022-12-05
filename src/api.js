@@ -14,3 +14,9 @@ export const getArticles = () => {
             console.log("ERROR!", err);
         });
 };
+
+export const getTopics = () => {
+    return apiConnection.get("/topics").then(({ data: { topics } }) => {
+        return topics;
+    });
+};
