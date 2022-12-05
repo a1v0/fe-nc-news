@@ -1,0 +1,33 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Logo {
+    font-weight: bolder;
+    text-transform: uppercase;
+    padding: 10px 0;
+    display: block;
+    height: fit-content;
+    font-size: 2rem;
+    text-align: center;
+}
+.Logo span {
+    background-color: black;
+    color: white;
+    padding: 0.5rem 0;
+    height: 3rem;
+    width: 3rem;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 10px;
+}
+.Logo span.Logo-news {
+    background-color: transparent;
+    color: black;
+}
