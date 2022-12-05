@@ -1744,7 +1744,7 @@
               19.5
             ],
             "rotation": 0,
-            "text": "✅Home\n \nArticles:\n✅Articles by topic\n✅Individual articles\n \nUsers:\n✅Login / Sign Up\n✅Profile\n✅Add new article\n✅Edit existing article\n \n(If I have time)\nHelp:\n- Instructions on performing certain tasks",
+            "text": "✅Home\n \nArticles:\n✅Articles by topic\n✅Individual articles\n- Articles by user\n \nUsers:\n✅Login / Sign Up\n✅Profile\n✅Add new article\n✅Edit existing article\n \n(If I have time)\nHelp:\n- Instructions on performing certain tasks",
             "style": {
               "color": "black",
               "size": "small",
