@@ -1158,6 +1158,558 @@
               0.5,
               0.5
             ]
+          },
+          "fb3c8f7b-5079-455a-08db-89b6becf19d4": {
+            "id": "fb3c8f7b-5079-455a-08db-89b6becf19d4",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 44,
+            "point": [
+              123,
+              1120.5
+            ],
+            "rotation": 0,
+            "text": "User: /user/profile",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            }
+          },
+          "0ce60846-3df5-49a5-01cb-7cd549adcd19": {
+            "id": "0ce60846-3df5-49a5-01cb-7cd549adcd19",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 45,
+            "point": [
+              113,
+              1162
+            ],
+            "rotation": 0,
+            "text": "Shows profile of specific logged in user",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.44736842105263164,
+              "font": "mono",
+              "textAlign": "start"
+            }
+          },
+          "31b0ded0-2ae1-4f5b-2b38-e60575aa743b": {
+            "id": "31b0ded0-2ae1-4f5b-2b38-e60575aa743b",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 46,
+            "point": [
+              109,
+              1200
+            ],
+            "size": [
+              213,
+              389
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "e20752c8-d9da-46b5-3536-d7136c66e2ae": {
+            "id": "e20752c8-d9da-46b5-3536-d7136c66e2ae",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 47,
+            "point": [
+              334,
+              1203
+            ],
+            "size": [
+              749,
+              390
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "8cf5ff35-b79a-4c91-16a0-249643fba82d": {
+            "id": "8cf5ff35-b79a-4c91-16a0-249643fba82d",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 48,
+            "point": [
+              118,
+              1207.5
+            ],
+            "size": [
+              189,
+              65
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "Logo",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "eae3e3c1-c7c5-419d-0ba8-aa3fa3e1ccc1": {
+            "id": "eae3e3c1-c7c5-419d-0ba8-aa3fa3e1ccc1",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 49,
+            "point": [
+              120,
+              1275.5
+            ],
+            "size": [
+              190,
+              63
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "Nav:\ntopics, user",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "8b11b5cc-7b0d-4418-3c2c-4746086e6b5c": {
+            "id": "8b11b5cc-7b0d-4418-3c2c-4746086e6b5c",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 50,
+            "point": [
+              341,
+              1214.5
+            ],
+            "size": [
+              189,
+              65
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "Logo",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "baf8a7e3-d429-4804-347f-a9d396f16ddc": {
+            "id": "baf8a7e3-d429-4804-347f-a9d396f16ddc",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 51,
+            "point": [
+              540,
+              1214.5
+            ],
+            "size": [
+              539,
+              63
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "Nav:\ntopics, user",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "39088d40-77d1-4d81-3aa3-168b7c337de4": {
+            "id": "39088d40-77d1-4d81-3aa3-168b7c337de4",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 52,
+            "point": [
+              124,
+              1524.5
+            ],
+            "size": [
+              185,
+              54
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "Footer",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "2a49835d-03ef-4d5f-38b7-45c53d42f1d8": {
+            "id": "2a49835d-03ef-4d5f-38b7-45c53d42f1d8",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 53,
+            "point": [
+              347,
+              1531.5
+            ],
+            "size": [
+              729,
+              54
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "Footer",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "043ca0e8-16bf-40bc-1ea0-3cd679850b91": {
+            "id": "043ca0e8-16bf-40bc-1ea0-3cd679850b91",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 55,
+            "point": [
+              339,
+              1283.5
+            ],
+            "size": [
+              737,
+              244
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": " ",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "e470fb46-adcf-4c5a-3e22-658f1d904cb3": {
+            "id": "e470fb46-adcf-4c5a-3e22-658f1d904cb3",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 62,
+            "point": [
+              123,
+              1343.5
+            ],
+            "size": [
+              185,
+              177
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": " ",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "3a797a3b-3f2a-4642-26d9-7d73ea053ac0": {
+            "id": "3a797a3b-3f2a-4642-26d9-7d73ea053ac0",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 63,
+            "point": [
+              350.5,
+              1293
+            ],
+            "rotation": 0,
+            "text": "User info",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            }
+          },
+          "15a40d8d-5c5c-4ac7-2621-0438f3698757": {
+            "id": "15a40d8d-5c5c-4ac7-2621-0438f3698757",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 64,
+            "point": [
+              345,
+              1335
+            ],
+            "size": [
+              358,
+              186
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "List of user's\narticles, comments",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "5333a185-efc2-4ff1-26b2-820ef4ecdfe7": {
+            "id": "5333a185-efc2-4ff1-26b2-820ef4ecdfe7",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 65,
+            "point": [
+              712,
+              1335
+            ],
+            "size": [
+              358,
+              186
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": "List of user's\ndata, e.g. username,\nname and avatar,\nincl. option to\nchange this data",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "6edc8e2b-d151-426a-2afd-4929385402ee": {
+            "id": "6edc8e2b-d151-426a-2afd-4929385402ee",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 66,
+            "point": [
+              130.5,
+              1344
+            ],
+            "rotation": 0,
+            "text": "User info",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            }
+          },
+          "1cc71ab7-df9d-4bff-2492-3e1116d3bf73": {
+            "id": "1cc71ab7-df9d-4bff-2492-3e1116d3bf73",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 67,
+            "point": [
+              132,
+              1379
+            ],
+            "size": [
+              166,
+              60
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": " ",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "cfa41df8-044e-4c66-11c0-e0dbaa69f9cf": {
+            "id": "cfa41df8-044e-4c66-11c0-e0dbaa69f9cf",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 68,
+            "point": [
+              127,
+              1442
+            ],
+            "size": [
+              173,
+              71
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            },
+            "label": " ",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "4caffca8-aaf9-4b14-29d1-a54759feb86f": {
+            "id": "4caffca8-aaf9-4b14-29d1-a54759feb86f",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 69,
+            "point": [
+              136,
+              1389
+            ],
+            "rotation": 0,
+            "text": "List of user's\narticles, comments",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.5151515151515151,
+              "font": "mono",
+              "textAlign": "start"
+            }
+          },
+          "c6b6f6c7-8085-48a6-2d7e-f7e1ed70f82c": {
+            "id": "c6b6f6c7-8085-48a6-2d7e-f7e1ed70f82c",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 70,
+            "point": [
+              152,
+              1444.64
+            ],
+            "rotation": 0,
+            "text": "List of user's\ndata, e.g. username,\nname and avatar,\nincl. option to\nchange this data",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.38905775075987853,
+              "font": "mono",
+              "textAlign": "start"
+            }
           }
         },
         "bindings": {}
