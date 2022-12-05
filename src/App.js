@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Articles from "./components/Articles";
 import Footer from "./components/Footer";
@@ -9,7 +10,9 @@ function App() {
         <div className="App">
             <Logo />
             <Nav />
-            <Articles />
+            <Routes>
+                <Route path="/" element={<Articles />} />
+            </Routes>
             <Footer />
         </div>
     );
