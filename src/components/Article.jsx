@@ -29,7 +29,7 @@ export default function Article() {
                     <p className="article-body">{article.body}</p>
                 </section>
             </article>
-            <Comments />
+            <Comments article_id={article_id} />
         </>
     );
 }
