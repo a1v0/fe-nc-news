@@ -126,12 +126,23 @@ body {
     text-decoration: underline;
 }
 
+.Comments {
+    background-color: var(--brand-colour);
+    border-radius: 5px;
+    margin: 10px;
+}
+.Comments h2 {
+    border-bottom: 2px dashed var(--dark-shade);
+    color: var(--dark-shade);
+}
+
 /* PADDING FOR STRUCTURAL COMPONENTS */
 .Footer,
 .Logo,
 .Nav,
 .Articles,
-.Article {
+.Article,
+.Comments {
     padding: 10px;
 }
 
@@ -186,7 +197,8 @@ body {
     .Logo,
     .Nav,
     .Articles,
-    .Article {
+    .Article,
+    .Comments {
         padding-left: 20px;
         padding-right: 20px;
     }
