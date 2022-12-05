@@ -22,8 +22,10 @@ export default function Article() {
                 </p>
                 <p>#{article.topic}</p>
             </div>
-            <img src={PlaceholderImage} alt="placeholder" />
-            <p className="article-body">{article.body}</p>
+            <section>
+                <img src={PlaceholderImage} alt="placeholder" />
+                <p className="article-body">{article.body}</p>
+            </section>
         </article>
     );
 }

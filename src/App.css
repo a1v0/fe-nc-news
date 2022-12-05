@@ -102,12 +102,15 @@ body {
 .Article .author-and-topic strong {
     color: var(--dark-shade);
 }
-.Article img {
+.Article section {
+    display: block;
+}
+.Article section img {
     width: 100%;
     border: 2px black solid;
     border-radius: 3px;
 }
-.Article .article-body {
+.Article section .article-body {
     padding: 10px 0;
     font-size: 1.1em;
 }
@@ -160,6 +163,22 @@ body {
     }
     .Articles li img {
         width: 100%;
+    }
+
+    .Article section {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+    .Article section p {
+        grid-column: 1 / 3;
+        grid-row: 1/2;
+        margin-right: 15px;
+    }
+    .Article section img {
+        margin: 10px 0px;
+        grid-column: 3 / 4;
+        grid-row: 1/2;
     }
 
     /* PADDING FOR STRUCTURAL COMPONENTS */
