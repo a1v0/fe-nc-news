@@ -25,7 +25,7 @@ body {
     display: block;
     height: fit-content;
     font-size: 2rem;
-    padding: 10px;
+    /* padding: 10px; */
     text-align: center;
 }
 .Logo a {
@@ -50,11 +50,10 @@ body {
     background-color: var(--brand-colour);
     display: flex;
     justify-content: space-between;
-    padding: 10px;
 }
 .Nav ul li {
     list-style-type: none;
-    padding: 5px;
+    padding: 5px 0;
     display: block;
 }
 .Nav ul li a {
@@ -66,7 +65,6 @@ body {
 .Articles {
     list-style-type: none;
     display: block;
-    padding: 10px;
 }
 .Articles li {
     margin: 10px 0;
@@ -88,7 +86,6 @@ body {
 
 .Footer {
     background-color: var(--light-accent);
-    padding: 10px;
 }
 .Footer a {
     text-decoration: none;
@@ -98,13 +95,18 @@ body {
     text-decoration: underline;
 }
 
+/* PADDING FOR STRUCTURAL COMPONENTS */
+.Footer,
+.Logo,
+.Nav,
+.Articles,
+.Article {
+    padding: 10px;
+}
+
 @media only screen and (min-width: 500px) {
     .Logo {
         text-align: left;
-        padding-left: 20px;
-    }
-    .Nav {
-        padding: 10px 20px;
     }
     .Nav ul li {
         border-left: 2px var(--dark-shade) solid;
@@ -130,5 +132,15 @@ body {
     }
     .Articles li img {
         width: 100%;
+    }
+
+    /* PADDING FOR STRUCTURAL COMPONENTS */
+    .Footer,
+    .Logo,
+    .Nav,
+    .Articles,
+    .Article {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
