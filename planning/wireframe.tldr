@@ -1549,7 +1549,7 @@
               "font": "mono",
               "textAlign": "start"
             },
-            "label": "List of user's\narticles, comments",
+            "label": "List of user's\narticles (incl. option\nto modify/delete),\ncomments",
             "labelPoint": [
               0.5,
               0.5
@@ -1696,17 +1696,61 @@
             "parentId": "page",
             "childIndex": 70,
             "point": [
-              152,
-              1444.64
+              132,
+              1446.64
             ],
             "rotation": 0,
-            "text": "List of user's\ndata, e.g. username,\nname and avatar,\nincl. option to\nchange this data",
+            "text": "List of user's\narticles (incl. option\nto modify/delete),\ncomments",
             "style": {
               "color": "black",
               "size": "small",
               "isFilled": false,
               "dash": "draw",
               "scale": 0.38905775075987853,
+              "font": "mono",
+              "textAlign": "start"
+            }
+          },
+          "d202b4e9-377b-42b4-1f61-a83fefe964e1": {
+            "id": "d202b4e9-377b-42b4-1f61-a83fefe964e1",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 4,
+            "point": [
+              1181.5,
+              -40.5
+            ],
+            "rotation": 0,
+            "text": "Pages:",
+            "style": {
+              "color": "black",
+              "size": "medium",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "mono",
+              "textAlign": "start"
+            }
+          },
+          "f1ec4e1e-c0ac-47ff-3c83-ecb52ffb4e76": {
+            "id": "f1ec4e1e-c0ac-47ff-3c83-ecb52ffb4e76",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 5,
+            "point": [
+              1185.5,
+              19.5
+            ],
+            "rotation": 0,
+            "text": "✅Home\n \nArticles:\n✅Articles by topic\n✅Individual articles\n \nUsers:\n- Login / Sign Up\n✅Profile\n- Add new article\n- Edit existing article\n \n(If I have time)\nHelp:\n- Instructions on performing certain tasks",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
               "font": "mono",
               "textAlign": "start"
             }
