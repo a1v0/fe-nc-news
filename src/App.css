@@ -246,6 +246,10 @@ body {
     .Logo {
         text-align: left;
     }
+
+    .Nav {
+        align-items: center;
+    }
     .Nav ul li {
         border-left: 2px var(--dark-shade) solid;
         padding: 0 15px;
