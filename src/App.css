@@ -137,14 +137,33 @@ body {
 }
 .Comments ul li {
     list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    background-color: var(--light-shade);
+    border: var(--dark-accent) 2px solid;
+    border-radius: 10px;
+    margin: 5px 0;
 }
-.Comments ul li .comment {
-    grid-column: 1 / 5;
+.Comments ul li .title {
+    border-bottom: var(--dark-accent) 2px solid;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
 }
-.Comments ul li .details {
-    grid-column: 3 / 5;
+.Comments ul li .votes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--brand-colour);
+    border-radius: 3px;
+    padding: 3px;
+    margin-top: 5px;
+    font-size: 1.2em;
+}
+.Comments ul li .votes a {
+    flex-grow: 1;
+    text-decoration: none;
+    color: var(--dark-shade);
+}
+.Comments ul li .votes p {
+    flex-grow: 2;
 }
 
 /* PADDING FOR STRUCTURAL COMPONENTS */
@@ -153,7 +172,8 @@ body {
 .Nav,
 .Articles,
 .Article,
-.Comments {
+.Comments,
+.Comments li {
     padding: 10px;
 }
 

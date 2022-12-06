@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getComments } from "../api";
 
 export default function Comments({ article_id }) {
@@ -14,17 +15,39 @@ export default function Comments({ article_id }) {
             <h2>Have your say!</h2>
             <ul>
                 {comments.map((comment) => {
-                    const timeStamp = new Date(comment.created_at);
+                    const elapsedTime = Date.now() - comment.created_at;
+                    const elapsedDays = elapsedTime / 86400000; // amount of milliseconds in a day
+                    let elapsedTimeString = "";
+                    if (elapsedDays > 365) {
+                        elapsedTimeString = `${Math.floor(
+                            elapsedDays / 365
+                        )} year${
+                            Math.floor(elapsedDays / 365) > 1 ? "s" : null
+                        } ago`;
+                    } else if (elapsedDays < 1) {
+                        elapsedTimeString = `${Math.floor(
+                            elapsedDays / 24
+                        )} hour${
+                            Math.floor(elapsedDays / 24) > 1 ? "s" : null
+                        } ago`;
+                    } else {
+                        elapsedTimeString = `${Math.floor(elapsedDays)} day${
+                            Math.floor(elapsedDays) > 1 ? "s" : null
+                        } ago`;
+                    }
+
                     return (
                         <li key={comment.comment_id}>
-                            <p className="comment">{comment.body}</p>
-                            <p className="details">
-                                {comment.author} at{" "}
-                                {timeStamp.toLocaleDateString()}
+                            <p className="title">
+                                <strong>{comment.author}</strong>,{" "}
+                                {elapsedTimeString}
                             </p>
-                            <div className="upvotes">⬆️</div>
-                            <div className="downvotes">⬇️</div>
-                            <p className="details">{comment.votes} votes</p>
+                            <p className="comment">{comment.body}</p>
+                            <div className="votes">
+                                <Link>⬆️like</Link>
+                                <Link>⬇️dislike</Link>
+                                <p>{comment.votes} votes</p>
+                            </div>
                         </li>
                     );
                 })}
