@@ -52,9 +52,5 @@ export const getComments = (article_id) => {
 
 export const addVoteToComment = (comment_id, isUpvote) => {
     const inc_votes = isUpvote ? 1 : -1;
-    return apiConnection
-        .patch(`comments/${comment_id}`, { inc_votes })
-        .then(({ data }) => {
-            console.log(data);
-        });
+    return apiConnection.patch(`comments/${comment_id}`, { inc_votes });
 };

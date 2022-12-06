@@ -10,6 +10,31 @@ export default function Comments({ article_id }) {
             console.log(comments);
         });
     }, [article_id]);
+
+    const [commentError, setCommentError] = useState({});
+    const ErrorMessage = () => {
+        return (
+            <div className="ErrorMessage">
+                <div>❗</div>
+                <p>Whoopsie! Something went wrong. Please try again.</p>
+            </div>
+        );
+    };
+
+    const handleVote = (comment_id, isUpvote) => {
+        addVoteToComment(comment_id, isUpvote)
+            .then(() => {
+                const updatedCommentError = { ...commentError };
+                updatedCommentError[comment_id] = false;
+                setCommentError(updatedCommentError);
+            })
+            .catch(() => {
+                const updatedCommentError = { ...commentError };
+                updatedCommentError[comment_id] = true;
+                setCommentError(updatedCommentError);
+            });
+    };
+
     return (
         <div className="Comments">
             <h2>Have your say!</h2>
@@ -46,26 +71,23 @@ export default function Comments({ article_id }) {
                             <div className="votes">
                                 <Link
                                     onClick={() => {
-                                        addVoteToComment(
-                                            comment.comment_id,
-                                            true
-                                        );
+                                        handleVote(comment.comment_id, true);
                                     }}
                                 >
                                     ⬆️like
                                 </Link>
                                 <Link
                                     onClick={() => {
-                                        addVoteToComment(
-                                            comment.comment_id,
-                                            false
-                                        );
+                                        handleVote(comment.comment_id, false);
                                     }}
                                 >
                                     ⬇️dislike
                                 </Link>
                                 <p>{comment.votes} votes</p>
                             </div>
+                            {commentError[comment.comment_id] ? (
+                                <ErrorMessage />
+                            ) : null}
                         </li>
                     );
                 })}

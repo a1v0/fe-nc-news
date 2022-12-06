@@ -133,6 +133,7 @@ body {
 }
 .Comments h2 {
     border-bottom: 2px dashed var(--dark-shade);
+    padding-bottom: 5px;
     color: var(--dark-shade);
 }
 .Comments ul li {
@@ -165,6 +166,17 @@ body {
 .Comments ul li .votes p {
     flex-grow: 2;
 }
+.ErrorMessage {
+    border: solid 2px var(--dark-accent);
+    border-radius: 3px;
+    background-color: pink;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+.ErrorMessage div {
+    font-size: 2em;
+}
 
 /* PADDING FOR STRUCTURAL COMPONENTS */
 .Footer,
@@ -173,7 +185,8 @@ body {
 .Articles,
 .Article,
 .Comments,
-.Comments li {
+.Comments li,
+.ErrorMessage {
     padding: 10px;
 }
 
