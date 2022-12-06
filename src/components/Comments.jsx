@@ -71,6 +71,7 @@ export default function Comments({ article_id }) {
                             <div className="votes">
                                 <Link
                                     onClick={() => {
+                                        ++comment.votes;
                                         handleVote(comment.comment_id, true);
                                     }}
                                 >
@@ -78,6 +79,7 @@ export default function Comments({ article_id }) {
                                 </Link>
                                 <Link
                                     onClick={() => {
+                                        --comment.votes;
                                         handleVote(comment.comment_id, false);
                                     }}
                                 >
