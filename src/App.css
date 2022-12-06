@@ -22,21 +22,20 @@ body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
     background-color: var(--light-accent);
-    font-weight: bolder;
     text-transform: uppercase;
     display: block;
     height: fit-content;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
 }
 .Logo a {
     display: block;
 }
 .Logo a span {
-    background-color: var(--dark-shade);
+    background-color: black;
     color: white;
-    padding: 0.5rem 0;
     height: 3rem;
+    padding-top: 0.1rem;
     width: 3rem;
     display: inline-block;
     margin-right: 10px;
