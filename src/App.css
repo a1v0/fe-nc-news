@@ -149,6 +149,7 @@ body {
 }
 .Comments ul li .votes {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     background-color: var(--brand-colour);
@@ -165,12 +166,26 @@ body {
 .Comments ul li .votes p {
     flex-grow: 2;
 }
+.Comments ul li form {
+    display: flex;
+}
+.Comments ul li form textarea {
+    flex-grow: 6;
+    margin-right: 5px;
+    padding: 5px;
+    font-family: inherit;
+}
+.Comments ul li form button {
+    flex-grow: 1;
+}
+
 .ErrorMessage {
     border: solid 2px var(--dark-accent);
     border-radius: 3px;
     background-color: pink;
     margin-top: 5px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 }
 .ErrorMessage div {
