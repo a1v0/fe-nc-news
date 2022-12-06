@@ -193,6 +193,9 @@ body {
 .Comments ul li form button {
     flex-grow: 1;
 }
+.Comments ul li .votes .voted {
+    font-weight: bold;
+}
 
 .ErrorMessage {
     border: solid 2px var(--dark-accent);
