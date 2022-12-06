@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { addVoteToComment, getComments } from "../api";
+import { addVoteToComment, getComments, postComment } from "../api";
 
 export default function Comments({ article_id }) {
     const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useState([]);
     useEffect(() => {
+        setIsLoading(true);
         getComments(article_id).then((comments) => {
             setComments(comments);
-            setIsLoading(false);
         });
     }, [article_id]);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, [comments]);
 
     const [commentError, setCommentError] = useState({});
     const ErrorMessage = () => {
@@ -39,11 +43,30 @@ export default function Comments({ article_id }) {
             });
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        postComment(article_id, {
+            article_id,
+            body: event.target[0].value
+            // username
+        });
+    };
+
     return (
         <div className="Comments">
             <h2>Have your say!</h2>
             {!isLoading ? (
                 <ul>
+                    <li>
+                        <form
+                            onSubmit={(event) => {
+                                handleSubmit(event);
+                            }}
+                        >
+                            <textarea></textarea>
+                            <button type="submit">Post Comment</button>
+                        </form>
+                    </li>
                     {comments.map((comment) => {
                         const elapsedTime = Date.now() - comment.created_at;
                         const elapsedDays = elapsedTime / 86400000; // amount of milliseconds in a day
