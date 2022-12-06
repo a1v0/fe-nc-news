@@ -52,6 +52,7 @@ export default function Comments({ article_id }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        event.target[1].disabled = true;
         postComment(article_id, {
             article_id,
             body: event.target[0].value,
@@ -61,6 +62,8 @@ export default function Comments({ article_id }) {
             comment.voteLimiter = 0;
             const updatedComments = [comment, ...comments];
             setComments(updatedComments);
+            event.target[0].value = "";
+            event.target[1].disabled = false;
         });
     };
 
@@ -177,7 +180,10 @@ export default function Comments({ article_id }) {
                                     >
                                         ⬇️dislike
                                     </Link>
-                                    <p>{comment.votes} votes</p>
+                                    <p>
+                                        {comment.votes} vote
+                                        {comment.votes === 1 ? "" : "s"}
+                                    </p>
                                 </div>
                                 {commentError[comment.comment_id] ? (
                                     <ErrorMessage />
