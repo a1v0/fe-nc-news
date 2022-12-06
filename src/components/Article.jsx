@@ -7,27 +7,36 @@ import Comments from "./Comments";
 export default function Article() {
     const { article_id } = useParams();
     const [article, setArticle] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getArticle(article_id).then((article) => {
             setArticle(article);
+            setIsLoading(false);
         });
     }, [article_id]);
 
     return (
         <>
             <article className="Article">
-                <h1>{article.title}</h1>
-                <div className="author-and-topic">
-                    <p>
-                        <strong>&mdash; {article.author}</strong> (author)
-                    </p>
-                    <p>#{article.topic}</p>
-                </div>
-                <section>
-                    <img src={PlaceholderImage} alt="placeholder" />
-                    <p className="article-body">{article.body}</p>
-                </section>
+                {!isLoading ? (
+                    <>
+                        <h1>{article.title}</h1>
+                        <div className="author-and-topic">
+                            <p>
+                                <strong>&mdash; {article.author}</strong>{" "}
+                                (author)
+                            </p>
+                            <p>#{article.topic}</p>
+                        </div>
+                        <section>
+                            <img src={PlaceholderImage} alt="placeholder" />
+                            <p className="article-body">{article.body}</p>
+                        </section>
+                    </>
+                ) : (
+                    <p>Loading article...</p>
+                )}
             </article>
             <Comments article_id={article_id} />
         </>
