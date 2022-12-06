@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getComments } from "../api";
+import { addVoteToComment, getComments } from "../api";
 
 export default function Comments({ article_id }) {
     const [comments, setComments] = useState([]);
@@ -44,8 +44,26 @@ export default function Comments({ article_id }) {
                             </p>
                             <p className="comment">{comment.body}</p>
                             <div className="votes">
-                                <Link>⬆️like</Link>
-                                <Link>⬇️dislike</Link>
+                                <Link
+                                    onClick={() => {
+                                        addVoteToComment(
+                                            comment.comment_id,
+                                            true
+                                        );
+                                    }}
+                                >
+                                    ⬆️like
+                                </Link>
+                                <Link
+                                    onClick={() => {
+                                        addVoteToComment(
+                                            comment.comment_id,
+                                            false
+                                        );
+                                    }}
+                                >
+                                    ⬇️dislike
+                                </Link>
                                 <p>{comment.votes} votes</p>
                             </div>
                         </li>
