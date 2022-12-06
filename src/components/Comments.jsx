@@ -16,7 +16,10 @@ export default function Comments({ article_id }) {
         return (
             <div className="ErrorMessage">
                 <div>❗</div>
-                <p>Whoopsie! Something went wrong. Please try again.</p>
+                <p>
+                    Whoopsie! Something went wrong. Please try again. (You may
+                    be overloading the server with too many votes.)
+                </p>
             </div>
         );
     };
