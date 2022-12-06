@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { addVoteToComment, getComments, postComment } from "../api";
+import { UserContext } from "../contexts/UserProvider";
 
 export default function Comments({ article_id }) {
+    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+
     const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useState([]);
     useEffect(() => {
@@ -47,8 +50,12 @@ export default function Comments({ article_id }) {
         event.preventDefault();
         postComment(article_id, {
             article_id,
-            body: event.target[0].value
-            // username
+            body: event.target[0].value,
+            username: loggedInUser.username
+        }).then((comment) => {
+            comment.created_at = Date.now();
+            const updatedComments = [comment, ...comments];
+            setComments(updatedComments);
         });
     };
 
@@ -58,14 +65,24 @@ export default function Comments({ article_id }) {
             {!isLoading ? (
                 <ul>
                     <li>
-                        <form
-                            onSubmit={(event) => {
-                                handleSubmit(event);
-                            }}
-                        >
-                            <textarea></textarea>
-                            <button type="submit">Post Comment</button>
-                        </form>
+                        {!loggedInUser ? (
+                            <p>
+                                You must be{" "}
+                                <Link to="/user/login">
+                                    <strong>logged in</strong>
+                                </Link>{" "}
+                                to post a comment.
+                            </p>
+                        ) : (
+                            <form
+                                onSubmit={(event) => {
+                                    handleSubmit(event);
+                                }}
+                            >
+                                <textarea></textarea>
+                                <button type="submit">Post Comment</button>
+                            </form>
+                        )}
                     </li>
                     {comments.map((comment) => {
                         const elapsedTime = Date.now() - comment.created_at;
@@ -75,19 +92,19 @@ export default function Comments({ article_id }) {
                             elapsedTimeString = `${Math.floor(
                                 elapsedDays / 365
                             )} year${
-                                Math.floor(elapsedDays / 365) > 1 ? "s" : null
+                                Math.floor(elapsedDays / 365) > 1 ? "s" : ""
                             } ago`;
                         } else if (elapsedDays < 1) {
                             elapsedTimeString = `${Math.floor(
                                 elapsedDays / 24
                             )} hour${
-                                Math.floor(elapsedDays / 24) > 1 ? "s" : null
+                                Math.floor(elapsedDays / 24) !== 1 ? "s" : ""
                             } ago`;
                         } else {
                             elapsedTimeString = `${Math.floor(
                                 elapsedDays
                             )} day${
-                                Math.floor(elapsedDays) > 1 ? "s" : null
+                                Math.floor(elapsedDays) !== 1 ? "s" : ""
                             } ago`;
                         }
 

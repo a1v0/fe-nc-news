@@ -53,6 +53,9 @@ export const getComments = (article_id) => {
 export const postComment = (article_id, comment) => {
     return apiConnection
         .post(`/articles/${article_id}/comments`, comment)
+        .then(({ data: { comment } }) => {
+            return comment;
+        })
         .catch((err) => {
             console.log("ERROR!", err);
         });
