@@ -135,6 +135,17 @@ body {
     border-bottom: 2px dashed var(--dark-shade);
     color: var(--dark-shade);
 }
+.Comments ul li {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.Comments ul li .comment {
+    grid-column: 1 / 5;
+}
+.Comments ul li .details {
+    grid-column: 3 / 5;
+}
 
 /* PADDING FOR STRUCTURAL COMPONENTS */
 .Footer,

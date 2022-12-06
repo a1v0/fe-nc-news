@@ -14,7 +14,19 @@ export default function Comments({ article_id }) {
             <h2>Have your say!</h2>
             <ul>
                 {comments.map((comment) => {
-                    return <li>{comment.author}</li>;
+                    const timeStamp = new Date(comment.created_at);
+                    return (
+                        <li key={comment.comment_id}>
+                            <p className="comment">{comment.body}</p>
+                            <p className="details">
+                                {comment.author} at{" "}
+                                {timeStamp.toLocaleDateString()}
+                            </p>
+                            <div className="upvotes">⬆️</div>
+                            <div className="downvotes">⬇️</div>
+                            <p className="details">{comment.votes} votes</p>
+                        </li>
+                    );
                 })}
             </ul>
         </div>
