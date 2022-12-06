@@ -61,6 +61,21 @@ body {
     font-weight: bold;
     text-transform: capitalize;
 }
+.Nav .user-greeting {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.Nav .user-greeting p {
+    text-align: right;
+}
+.Nav .user-greeting img.avatar {
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+    margin-left: 10px;
+}
 
 .Articles {
     list-style-type: none;
@@ -192,6 +207,28 @@ body {
     font-size: 2em;
 }
 
+.Login form {
+    display: flex;
+    flex-direction: column;
+}
+.Login form label {
+    margin: 10px 0;
+}
+.Login form label select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+.Login form button {
+    padding: 10px;
+    background-color: rgb(56, 150, 56);
+    color: var(--light-shade);
+    font-weight: bold;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+}
+
 /* PADDING FOR STRUCTURAL COMPONENTS */
 .Footer,
 .Logo,
@@ -200,7 +237,8 @@ body {
 .Article,
 .Comments,
 .Comments li,
-.ErrorMessage {
+.ErrorMessage,
+.Login {
     padding: 10px;
 }
 
@@ -256,7 +294,10 @@ body {
     .Nav,
     .Articles,
     .Article,
-    .Comments {
+    .Comments,
+    .Comments li,
+    .ErrorMessage,
+    .Login {
         padding-left: 20px;
         padding-right: 20px;
     }

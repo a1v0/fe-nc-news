@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getTopics } from "../api";
+import { UserContext } from "../contexts/UserProvider";
 
 export default function Nav() {
+    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+
     const [topics, setTopics] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -34,10 +37,30 @@ export default function Nav() {
             ) : (
                 <p>Loading...</p>
             )}
-            <div>
-                User stuff (show login/signin if not logged in, otherwise user
-                menu)
-            </div>
+            {!loggedInUser ? (
+                <div>
+                    <Link to="/user/login">Login or Sign Up!</Link>
+                </div>
+            ) : (
+                <div className="user-greeting">
+                    <p>
+                        What-ho, {loggedInUser.name}!<br />(
+                        <Link
+                            onClick={() => {
+                                setLoggedInUser(null);
+                            }}
+                        >
+                            Log out
+                        </Link>
+                        )
+                    </p>
+                    <img
+                        src={loggedInUser.avatar_url}
+                        className="avatar"
+                        alt={`${loggedInUser.name}'s avatar`}
+                    />
+                </div>
+            )}
         </div>
     );
 }
