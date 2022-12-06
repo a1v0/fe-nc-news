@@ -50,7 +50,19 @@ export const getComments = (article_id) => {
         });
 };
 
+export const postComment = (article_id, comment) => {
+    return apiConnection
+        .post(`/articles/${article_id}/comments`, comment)
+        .then(({ data }) => {
+            console.log(data);
+        });
+};
+
 export const addVoteToComment = (comment_id, isUpvote) => {
     const inc_votes = isUpvote ? 1 : -1;
-    return apiConnection.patch(`comments/${comment_id}`, { inc_votes });
+    return apiConnection
+        .patch(`comments/${comment_id}`, { inc_votes })
+        .catch((err) => {
+            console.log("ERROR!", err);
+        });
 };
