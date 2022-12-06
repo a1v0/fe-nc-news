@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticle } from "../api";
-import PlaceholderImage from "../misc/elementor-placeholder-image.jpg";
 import Comments from "./Comments";
 
 export default function Article() {
@@ -34,7 +33,10 @@ export default function Article() {
                             <p>#{article.topic}</p>
                         </div>
                         <section>
-                            <img src={PlaceholderImage} alt="placeholder" />
+                            <img
+                                src="https://picsum.photos/500/300"
+                                alt="randomly generated image"
+                            />
                             <p className="article-body">{article.body}</p>
                         </section>
                     </>

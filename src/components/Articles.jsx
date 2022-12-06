@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getArticles } from "../api";
-import PlaceholderImage from "../misc/elementor-placeholder-image.jpg";
 
 export default function Articles() {
     const { topic_id } = useParams();
@@ -26,7 +25,10 @@ export default function Articles() {
                     return (
                         <li key={article.article_id}>
                             <Link to={`/articles/${article.article_id}`}>
-                                <img src={PlaceholderImage} alt="placeholder" />
+                                <img
+                                    src="https://picsum.photos/600/350"
+                                    alt="randomly generated image"
+                                />
                                 <br />
                                 <strong>{article.title}</strong> <i>by</i>{" "}
                                 {article.author}
