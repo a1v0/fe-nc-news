@@ -6,30 +6,41 @@ import PlaceholderImage from "../misc/elementor-placeholder-image.jpg";
 export default function Articles() {
     const { topic_id } = useParams();
     const [articles, setArticles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         getArticles(topic_id).then((articles) => {
             setArticles(articles);
         });
     }, [topic_id]);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, [articles]);
+
     return (
         <ul className="Articles">
-            {articles.map((article) => {
-                return (
-                    <li key={article.article_id}>
-                        <Link to={`/articles/${article.article_id}`}>
-                            <img src={PlaceholderImage} alt="placeholder" />
-                            <br />
-                            <strong>{article.title}</strong> <i>by</i>{" "}
-                            {article.author}
-                            <br />
-                            <span className="Articles--topic">
-                                #{article.topic}
-                            </span>
-                        </Link>
-                    </li>
-                );
-            })}
+            {!isLoading ? (
+                articles.map((article) => {
+                    return (
+                        <li key={article.article_id}>
+                            <Link to={`/articles/${article.article_id}`}>
+                                <img src={PlaceholderImage} alt="placeholder" />
+                                <br />
+                                <strong>{article.title}</strong> <i>by</i>{" "}
+                                {article.author}
+                                <br />
+                                <span className="Articles--topic">
+                                    #{article.topic}
+                                </span>
+                            </Link>
+                        </li>
+                    );
+                })
+            ) : (
+                <p>Loading articles...</p>
+            )}
         </ul>
     );
 }

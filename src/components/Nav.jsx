@@ -7,11 +7,15 @@ export default function Nav() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         getTopics().then((topics) => {
             setTopics(topics);
-            setIsLoading(false);
         });
     }, []);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, [topics]);
 
     return (
         <div className="Nav">

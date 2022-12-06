@@ -10,11 +10,15 @@ export default function Article() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         getArticle(article_id).then((article) => {
             setArticle(article);
-            setIsLoading(false);
         });
     }, [article_id]);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, [article]);
 
     return (
         <>
