@@ -11,6 +11,10 @@ export default function Comments({ article_id }) {
     useEffect(() => {
         setIsLoading(true);
         getComments(article_id).then((comments) => {
+            comments = comments.map((comment) => {
+                comment.voteLimiter = 0; // used to prevent a user from up/downvoting by more than one per load
+                return comment;
+            });
             setComments(comments);
         });
     }, [article_id]);
@@ -54,6 +58,7 @@ export default function Comments({ article_id }) {
             username: loggedInUser.username
         }).then((comment) => {
             comment.created_at = Date.now();
+            comment.voteLimiter = 0;
             const updatedComments = [comment, ...comments];
             setComments(updatedComments);
         });
@@ -117,23 +122,57 @@ export default function Comments({ article_id }) {
                                 <p className="comment">{comment.body}</p>
                                 <div className="votes">
                                     <Link
+                                        className={
+                                            comment.voteLimiter === 1
+                                                ? "voted"
+                                                : null
+                                        }
                                         onClick={() => {
-                                            ++comment.votes;
-                                            handleVote(
-                                                comment.comment_id,
-                                                true
-                                            );
+                                            if (comment.voteLimiter < 1) {
+                                                ++comment.voteLimiter;
+                                                ++comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    true
+                                                );
+                                            } else if (
+                                                comment.voteLimiter === 1
+                                            ) {
+                                                --comment.voteLimiter;
+                                                --comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    false
+                                                );
+                                            }
                                         }}
                                     >
                                         ⬆️like
                                     </Link>
                                     <Link
+                                        className={
+                                            comment.voteLimiter === -1
+                                                ? "voted"
+                                                : null
+                                        }
                                         onClick={() => {
-                                            --comment.votes;
-                                            handleVote(
-                                                comment.comment_id,
-                                                false
-                                            );
+                                            if (comment.voteLimiter > -1) {
+                                                --comment.voteLimiter;
+                                                --comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    false
+                                                );
+                                            } else if (
+                                                comment.voteLimiter === -1
+                                            ) {
+                                                ++comment.voteLimiter;
+                                                ++comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    true
+                                                );
+                                            }
                                         }}
                                     >
                                         ⬇️dislike
