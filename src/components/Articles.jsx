@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { getArticles } from "../api";
 import cookingPhoto from "../misc/maarten-van-den-heuvel-EzH46XCDQRY-unsplash.jpg";
 import codingPhoto from "../misc/markus-spiske-cvBBO4PzWPg-unsplash.jpg";
@@ -9,48 +9,61 @@ export default function Articles() {
     const { topic_id } = useParams();
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [sortParams, setSortParams] = useSearchParams();
 
     const ref = useRef(null);
 
     useEffect(() => {
-        setIsLoading(true);
-        getArticles(topic_id)
-            .then((articles) => {
-                setArticles(articles);
-            })
-            .then(() => {
-                ref.current.selectedIndex = 0;
-            });
+        getArticles(topic_id).then((articles) => {
+            setArticles(articles);
+        });
     }, [topic_id]);
 
     useEffect(() => {
         setIsLoading(false);
     }, [articles]);
 
-    const handleSort = (event) => {
+    const setCorrectSortSelectorIndex = (
+        sortCriterion,
+        sortOrderCoefficient
+    ) => {
+        if (!sortCriterion) {
+            ref.current.selectedIndex = 0;
+        } else if (!sortOrderCoefficient || sortOrderCoefficient === 1) {
+            if (sortCriterion === "created_at") {
+                ref.current.selectedIndex = 1;
+            } else if (sortCriterion === "title") {
+                ref.current.selectedIndex = 3;
+            } else if (sortCriterion === "author") {
+                ref.current.selectedIndex = 5;
+            } else {
+                ref.current.selectedIndex = 0;
+            }
+        } else if (sortOrderCoefficient === -1) {
+            if (sortCriterion === "created_at") {
+                ref.current.selectedIndex = 2;
+            } else if (sortCriterion === "title") {
+                ref.current.selectedIndex = 4;
+            } else if (sortCriterion === "author") {
+                ref.current.selectedIndex = 6;
+            } else {
+                ref.current.selectedIndex = 0;
+            }
+        }
+    };
+
+    useEffect(() => {
+        sortArticles();
+    }, [sortParams]);
+
+    const sortArticles = () => {
         // TUTOR, IF YOU SEE THIS:
         // I'm handling this sorting on the client side, instead of making a new API query.
         // Given how my original API query returns only the newest articles, sorting by date will not show the oldest-ever article in the API
         // I kind of want to be able to see the oldest-ever articles, but am not sure if making a new API request on each sort is a good way of doing this.
-        console.log(event.target);
-        const selectedItem = event.target.value;
-        const sortOrderCoefficient = selectedItem.includes("ascending")
-            ? 1
-            : -1;
-        let sortCriterion;
-        switch (selectedItem.split(" ")[0]) {
-            case "Date":
-                sortCriterion = "created_at";
-                break;
-            case "Title":
-                sortCriterion = "title";
-                break;
-            case "Author":
-                sortCriterion = "author";
-                break;
-            default:
-                break;
-        }
+        const sortCriterion = sortParams.get("sort");
+        const sortOrderCoefficient = sortParams.get("order") === "asc" ? 1 : -1;
+
         const sortedArticles = [
             ...articles.sort((a, b) => {
                 if (typeof a[sortCriterion] === "number") {
@@ -70,6 +83,32 @@ export default function Articles() {
             })
         ];
         setArticles(sortedArticles);
+        setCorrectSortSelectorIndex(sortCriterion, sortOrderCoefficient);
+    };
+
+    const handleSort = (event) => {
+        const selectedItem = event.target.value;
+        const sortOrder = selectedItem.includes("ascending") ? "asc" : "desc";
+        let sortCriterion;
+
+        switch (selectedItem.split(" ")[0]) {
+            case "Date":
+                sortCriterion = "created_at";
+                break;
+            case "Title":
+                sortCriterion = "title";
+                break;
+            case "Author":
+                sortCriterion = "author";
+                break;
+            default:
+                break;
+        }
+
+        setSortParams({
+            sort: sortCriterion,
+            order: sortOrder
+        });
     };
 
     return (
