@@ -225,6 +225,13 @@ body {
     font-size: 2em;
 }
 
+.Login {
+    display: flex;
+    flex-direction: column;
+}
+.Login section {
+    margin-bottom: 20px;
+}
 .Login form {
     display: flex;
     flex-direction: column;
@@ -328,6 +335,20 @@ body {
 
     .Comments {
         margin-right: 20px;
+    }
+
+    .Login {
+        flex-direction: row;
+    }
+    .Login section {
+        width: 50%;
+    }
+    .Login section:nth-child(1) {
+        border-right: 3px var(--brand-colour) solid;
+        padding-right: 15px;
+    }
+    .Login section:nth-child(2) {
+        padding-left: 15px;
     }
 
     /* PADDING FOR STRUCTURAL COMPONENTS */

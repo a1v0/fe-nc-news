@@ -26,33 +26,37 @@ export default function Login() {
 
     return (
         <article className="Login">
-            <h2>Are you already a user?</h2>
-            {!isLoading ? (
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Select your username:
-                        <br />
-                        <select>
-                            {users.map((user) => {
-                                return (
-                                    <option key={user.username}>
-                                        {user.username} &ndash; {user.name}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </label>
-                    <button type="submit">Log In!</button>
-                </form>
-            ) : (
-                <p>Loading...</p>
-            )}
+            <section>
+                <h2>Are you already a user?</h2>
+                {!isLoading ? (
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Select your username:
+                            <br />
+                            <select>
+                                {users.map((user) => {
+                                    return (
+                                        <option key={user.username}>
+                                            {user.username} &ndash; {user.name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </label>
+                        <button type="submit">Log In!</button>
+                    </form>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </section>
 
-            <h2>Wanna sign up?</h2>
-            <p>
-                [currently you cannot sign up because our API hasn't got a
-                suitable endpoint]
-            </p>
+            <section>
+                <h2>Wanna sign up?</h2>
+                <p>
+                    [currently you cannot sign up because our API hasn't got a
+                    suitable endpoint]
+                </p>
+            </section>
         </article>
     );
 }
