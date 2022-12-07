@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getArticles } from "../api";
 import cookingPhoto from "../misc/maarten-van-den-heuvel-EzH46XCDQRY-unsplash.jpg";
@@ -10,56 +10,118 @@ export default function Articles() {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const ref = useRef(null);
+
     useEffect(() => {
         setIsLoading(true);
-        getArticles(topic_id).then((articles) => {
-            setArticles(articles);
-        });
+        getArticles(topic_id)
+            .then((articles) => {
+                setArticles(articles);
+            })
+            .then(() => {
+                ref.current.selectedIndex = 0;
+            });
     }, [topic_id]);
 
     useEffect(() => {
         setIsLoading(false);
     }, [articles]);
 
-    return (
-        <ul className="Articles">
-            {!isLoading ? (
-                articles.map((article) => {
-                    let photoSrc, photoAlt;
-                    switch (article.topic) {
-                        case "cooking":
-                            photoSrc = cookingPhoto;
-                            photoAlt = "colourful cookery";
-                            break;
-                        case "coding":
-                            photoSrc = codingPhoto;
-                            photoAlt = "messy computer code";
-                            break;
-                        case "football":
-                        // if anything goes awry, the default will render a football photo
-                        default:
-                            photoSrc = footballPhoto;
-                            photoAlt = "football stadium";
-                            break;
-                    }
+    const handleSort = (event) => {
+        // TUTOR, IF YOU SEE THIS:
+        // I'm handling this sorting on the client side, instead of making a new API query.
+        // Given how my original API query returns only the newest articles, sorting by date will not show the oldest-ever article in the API
+        // I kind of want to be able to see the oldest-ever articles, but am not sure if making a new API request on each sort is a good way of doing this.
+        console.log(event.target);
+        const selectedItem = event.target.value;
+        const sortOrderCoefficient = selectedItem.includes("ascending")
+            ? 1
+            : -1;
+        let sortCriterion;
+        switch (selectedItem.split(" ")[0]) {
+            case "Date":
+                sortCriterion = "created_at";
+                break;
+            case "Title":
+                sortCriterion = "title";
+                break;
+            case "Author":
+                sortCriterion = "author";
+                break;
+            default:
+                break;
+        }
+        const sortedArticles = [
+            ...articles.sort((a, b) => {
+                if (typeof a[sortCriterion] === "number") {
                     return (
-                        <li key={article.article_id}>
-                            <Link to={`/articles/${article.article_id}`}>
-                                <img src={photoSrc} alt={photoAlt} />
-                                <br />
-                                <strong>{article.title}</strong> <i>by</i>{" "}
-                                {article.author}
-                                <br />
-                                <span className="Articles--topic">
-                                    #{article.topic}
-                                </span>
-                            </Link>
-                        </li>
+                        (a[sortCriterion] - b[sortCriterion]) *
+                        sortOrderCoefficient
                     );
-                })
-            ) : (
-                <p>Loading articles...</p>
-            )}
-        </ul>
+                } else {
+                    if (a[sortCriterion] < b[sortCriterion]) {
+                        return sortOrderCoefficient === 1 ? -1 : 1;
+                    }
+                    if (a[sortCriterion] > b[sortCriterion]) {
+                        return sortOrderCoefficient === 1 ? 1 : -1;
+                    }
+                    return 0;
+                }
+            })
+        ];
+        setArticles(sortedArticles);
+    };
+
+    return (
+        <main className="Articles">
+            <select onChange={handleSort} ref={ref}>
+                <option>Sort articles by...</option>
+                <option>Date (ascending)</option>
+                <option>Date (descending)</option>
+                <option>Title (ascending)</option>
+                <option>Title (descending)</option>
+                <option>Author (ascending)</option>
+                <option>Author (descending)</option>
+            </select>
+            <ul>
+                {!isLoading ? (
+                    articles.map((article) => {
+                        let photoSrc, photoAlt;
+                        switch (article.topic) {
+                            case "cooking":
+                                photoSrc = cookingPhoto;
+                                photoAlt = "colourful cookery";
+                                break;
+                            case "coding":
+                                photoSrc = codingPhoto;
+                                photoAlt = "messy computer code";
+                                break;
+                            case "football":
+                            // if anything goes awry, the default will render a football photo
+                            default:
+                                photoSrc = footballPhoto;
+                                photoAlt = "football stadium";
+                                break;
+                        }
+                        return (
+                            <li key={article.article_id}>
+                                <Link to={`/articles/${article.article_id}`}>
+                                    <img src={photoSrc} alt={photoAlt} />
+                                    <br />
+                                    <strong>{article.title}</strong> <i>by</i>{" "}
+                                    {article.author}
+                                    <br />
+                                    <span className="Articles--topic">
+                                        #{article.topic}
+                                    </span>
+                                </Link>
+                            </li>
+                        );
+                    })
+                ) : (
+                    <p>Loading articles...</p>
+                )}
+            </ul>
+        </main>
     );
 }
