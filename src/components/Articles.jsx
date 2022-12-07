@@ -14,6 +14,7 @@ export default function Articles() {
     const ref = useRef(null);
 
     useEffect(() => {
+        setIsLoading(true);
         const sortCriterion = sortParams.get("sort");
         const sortOrder = sortParams.get("order");
         getArticles(topic_id, undefined, sortCriterion, sortOrder).then(
