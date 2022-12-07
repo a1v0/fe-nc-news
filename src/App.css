@@ -45,6 +45,8 @@ body {
 .Logo a span.Logo-news {
     background-color: transparent;
     color: var(--dark-shade);
+    width: fit-content;
+    margin-right: 0;
 }
 
 .Nav {
@@ -80,6 +82,8 @@ body {
 
 .Footer {
     background-color: var(--light-accent);
+    display: flex;
+    flex-direction: column;
 }
 .Footer a {
     text-decoration: none;
@@ -279,6 +283,11 @@ body {
     .Nav ul li:nth-child(1) {
         border-left: none;
         padding-left: 0;
+    }
+
+    .Footer {
+        flex-direction: row-reverse;
+        justify-content: space-between;
     }
 
     .Articles {
