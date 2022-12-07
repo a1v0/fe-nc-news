@@ -14,22 +14,24 @@ export default function Articles() {
     const ref = useRef(null);
 
     useEffect(() => {
-        getArticles(topic_id).then((articles) => {
-            setArticles(articles);
-        });
-    }, [topic_id]);
+        const sortCriterion = sortParams.get("sort");
+        const sortOrder = sortParams.get("order");
+        getArticles(topic_id, undefined, sortCriterion, sortOrder).then(
+            (articles) => {
+                setArticles(articles);
+            }
+        );
+        setCorrectSortSelectorIndex(sortCriterion, sortOrder);
+    }, [topic_id, sortParams]);
 
     useEffect(() => {
         setIsLoading(false);
     }, [articles]);
 
-    const setCorrectSortSelectorIndex = (
-        sortCriterion,
-        sortOrderCoefficient
-    ) => {
+    const setCorrectSortSelectorIndex = (sortCriterion, sortOrder) => {
         if (!sortCriterion) {
             ref.current.selectedIndex = 0;
-        } else if (!sortOrderCoefficient || sortOrderCoefficient === 1) {
+        } else if (!sortOrder || sortOrder === "asc") {
             if (sortCriterion === "created_at") {
                 ref.current.selectedIndex = 1;
             } else if (sortCriterion === "title") {
@@ -39,7 +41,7 @@ export default function Articles() {
             } else {
                 ref.current.selectedIndex = 0;
             }
-        } else if (sortOrderCoefficient === -1) {
+        } else if (sortOrder === "desc") {
             if (sortCriterion === "created_at") {
                 ref.current.selectedIndex = 2;
             } else if (sortCriterion === "title") {
@@ -50,40 +52,6 @@ export default function Articles() {
                 ref.current.selectedIndex = 0;
             }
         }
-    };
-
-    useEffect(() => {
-        sortArticles();
-    }, [sortParams]);
-
-    const sortArticles = () => {
-        // TUTOR, IF YOU SEE THIS:
-        // I'm handling this sorting on the client side, instead of making a new API query.
-        // Given how my original API query returns only the newest articles, sorting by date will not show the oldest-ever article in the API
-        // I kind of want to be able to see the oldest-ever articles, but am not sure if making a new API request on each sort is a good way of doing this.
-        const sortCriterion = sortParams.get("sort");
-        const sortOrderCoefficient = sortParams.get("order") === "asc" ? 1 : -1;
-
-        const sortedArticles = [
-            ...articles.sort((a, b) => {
-                if (typeof a[sortCriterion] === "number") {
-                    return (
-                        (a[sortCriterion] - b[sortCriterion]) *
-                        sortOrderCoefficient
-                    );
-                } else {
-                    if (a[sortCriterion] < b[sortCriterion]) {
-                        return sortOrderCoefficient === 1 ? -1 : 1;
-                    }
-                    if (a[sortCriterion] > b[sortCriterion]) {
-                        return sortOrderCoefficient === 1 ? 1 : -1;
-                    }
-                    return 0;
-                }
-            })
-        ];
-        setArticles(sortedArticles);
-        setCorrectSortSelectorIndex(sortCriterion, sortOrderCoefficient);
     };
 
     const handleSort = (event) => {
