@@ -1,15 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { addVoteToComment, getComments } from "../api";
+import { addVoteToComment, getComments, postComment } from "../api";
+import { UserContext } from "../contexts/UserProvider";
 
 export default function Comments({ article_id }) {
+    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+
+    const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useState([]);
     useEffect(() => {
+        setIsLoading(true);
         getComments(article_id).then((comments) => {
+            comments = comments.map((comment) => {
+                comment.voteLimiter = 0; // used to prevent a user from up/downvoting by more than one per load
+                return comment;
+            });
             setComments(comments);
-            console.log(comments);
         });
     }, [article_id]);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, [comments]);
 
     const [commentError, setCommentError] = useState({});
     const ErrorMessage = () => {
@@ -38,65 +50,155 @@ export default function Comments({ article_id }) {
             });
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (event.target[0].value) {
+            event.target[1].disabled = true;
+            postComment(article_id, {
+                article_id,
+                body: event.target[0].value,
+                username: loggedInUser.username
+            }).then((comment) => {
+                comment.created_at = Date.now();
+                comment.voteLimiter = 0;
+                const updatedComments = [comment, ...comments];
+                setComments(updatedComments);
+                event.target[0].value = "";
+                event.target[1].disabled = false;
+            });
+        }
+    };
+
     return (
         <div className="Comments">
             <h2>Have your say!</h2>
-            <ul>
-                {comments.map((comment) => {
-                    const elapsedTime = Date.now() - comment.created_at;
-                    const elapsedDays = elapsedTime / 86400000; // amount of milliseconds in a day
-                    let elapsedTimeString = "";
-                    if (elapsedDays > 365) {
-                        elapsedTimeString = `${Math.floor(
-                            elapsedDays / 365
-                        )} year${
-                            Math.floor(elapsedDays / 365) > 1 ? "s" : null
-                        } ago`;
-                    } else if (elapsedDays < 1) {
-                        elapsedTimeString = `${Math.floor(
-                            elapsedDays / 24
-                        )} hour${
-                            Math.floor(elapsedDays / 24) > 1 ? "s" : null
-                        } ago`;
-                    } else {
-                        elapsedTimeString = `${Math.floor(elapsedDays)} day${
-                            Math.floor(elapsedDays) > 1 ? "s" : null
-                        } ago`;
-                    }
-
-                    return (
-                        <li key={comment.comment_id}>
-                            <p className="title">
-                                <strong>{comment.author}</strong>,{" "}
-                                {elapsedTimeString}
+            {!isLoading ? (
+                <ul>
+                    <li>
+                        {!loggedInUser ? (
+                            <p>
+                                You must be{" "}
+                                <Link to="/user/login">
+                                    <strong>logged in</strong>
+                                </Link>{" "}
+                                to post a comment.
                             </p>
-                            <p className="comment">{comment.body}</p>
-                            <div className="votes">
-                                <Link
-                                    onClick={() => {
-                                        ++comment.votes;
-                                        handleVote(comment.comment_id, true);
-                                    }}
-                                >
-                                    ⬆️like
-                                </Link>
-                                <Link
-                                    onClick={() => {
-                                        --comment.votes;
-                                        handleVote(comment.comment_id, false);
-                                    }}
-                                >
-                                    ⬇️dislike
-                                </Link>
-                                <p>{comment.votes} votes</p>
-                            </div>
-                            {commentError[comment.comment_id] ? (
-                                <ErrorMessage />
-                            ) : null}
-                        </li>
-                    );
-                })}
-            </ul>
+                        ) : (
+                            <form
+                                onSubmit={(event) => {
+                                    handleSubmit(event);
+                                }}
+                            >
+                                <textarea placeholder="Add a comment..."></textarea>
+                                <button type="submit">Add Comment</button>
+                            </form>
+                        )}
+                    </li>
+                    {comments.map((comment) => {
+                        const elapsedTime = Date.now() - comment.created_at;
+                        const elapsedDays = elapsedTime / 86400000; // amount of milliseconds in a day
+                        let elapsedTimeString = "";
+                        if (elapsedDays > 365) {
+                            elapsedTimeString = `${Math.floor(
+                                elapsedDays / 365
+                            )} year${
+                                Math.floor(elapsedDays / 365) > 1 ? "s" : ""
+                            } ago`;
+                        } else if (elapsedDays < 1) {
+                            elapsedTimeString = `${Math.floor(
+                                elapsedDays / 24
+                            )} hour${
+                                Math.floor(elapsedDays / 24) !== 1 ? "s" : ""
+                            } ago`;
+                        } else {
+                            elapsedTimeString = `${Math.floor(
+                                elapsedDays
+                            )} day${
+                                Math.floor(elapsedDays) !== 1 ? "s" : ""
+                            } ago`;
+                        }
+
+                        return (
+                            <li key={comment.comment_id}>
+                                <p className="title">
+                                    <strong>{comment.author}</strong>,{" "}
+                                    {elapsedTimeString}
+                                </p>
+                                <p className="comment">{comment.body}</p>
+                                <div className="votes">
+                                    <Link
+                                        className={
+                                            comment.voteLimiter === 1
+                                                ? "voted"
+                                                : null
+                                        }
+                                        onClick={() => {
+                                            if (comment.voteLimiter < 1) {
+                                                ++comment.voteLimiter;
+                                                ++comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    true
+                                                );
+                                            } else if (
+                                                comment.voteLimiter === 1
+                                            ) {
+                                                --comment.voteLimiter;
+                                                --comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    false
+                                                );
+                                            }
+                                        }}
+                                    >
+                                        ⬆️like
+                                        {comment.voteLimiter === 1 ? "d" : ""}
+                                    </Link>
+                                    <Link
+                                        className={
+                                            comment.voteLimiter === -1
+                                                ? "voted"
+                                                : null
+                                        }
+                                        onClick={() => {
+                                            if (comment.voteLimiter > -1) {
+                                                --comment.voteLimiter;
+                                                --comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    false
+                                                );
+                                            } else if (
+                                                comment.voteLimiter === -1
+                                            ) {
+                                                ++comment.voteLimiter;
+                                                ++comment.votes;
+                                                handleVote(
+                                                    comment.comment_id,
+                                                    true
+                                                );
+                                            }
+                                        }}
+                                    >
+                                        ⬇️dislike
+                                        {comment.voteLimiter === -1 ? "d" : ""}
+                                    </Link>
+                                    <p>
+                                        {comment.votes} vote
+                                        {comment.votes === 1 ? "" : "s"}
+                                    </p>
+                                </div>
+                                {commentError[comment.comment_id] ? (
+                                    <ErrorMessage />
+                                ) : null}
+                            </li>
+                        );
+                    })}
+                </ul>
+            ) : (
+                <p>Loading comments...</p>
+            )}
         </div>
     );
 }

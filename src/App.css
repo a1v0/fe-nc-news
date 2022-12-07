@@ -22,21 +22,20 @@ body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
     background-color: var(--light-accent);
-    font-weight: bolder;
     text-transform: uppercase;
     display: block;
     height: fit-content;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
 }
 .Logo a {
     display: block;
 }
 .Logo a span {
-    background-color: var(--dark-shade);
+    background-color: black;
     color: white;
-    padding: 0.5rem 0;
     height: 3rem;
+    padding-top: 0.1rem;
     width: 3rem;
     display: inline-block;
     margin-right: 10px;
@@ -61,6 +60,32 @@ body {
     color: var(--dark-accent);
     font-weight: bold;
     text-transform: capitalize;
+}
+.Nav .user-greeting {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.Nav .user-greeting p {
+    text-align: right;
+}
+.Nav .user-greeting img.avatar {
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.Footer {
+    background-color: var(--light-accent);
+}
+.Footer a {
+    text-decoration: none;
+    color: var(--dark-shade);
+}
+.Footer a:hover {
+    text-decoration: underline;
 }
 
 .Articles {
@@ -115,17 +140,6 @@ body {
     font-size: 1.1em;
 }
 
-.Footer {
-    background-color: var(--light-accent);
-}
-.Footer a {
-    text-decoration: none;
-    color: var(--dark-shade);
-}
-.Footer a:hover {
-    text-decoration: underline;
-}
-
 .Comments {
     background-color: var(--brand-colour);
     border-radius: 5px;
@@ -150,6 +164,7 @@ body {
 }
 .Comments ul li .votes {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     background-color: var(--brand-colour);
@@ -162,20 +177,69 @@ body {
     flex-grow: 1;
     text-decoration: none;
     color: var(--dark-shade);
+    padding: 3px;
+    width: 100px;
+    border: 1px solid transparent;
 }
 .Comments ul li .votes p {
     flex-grow: 2;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: right;
 }
+.Comments ul li form {
+    display: flex;
+}
+.Comments ul li form textarea {
+    flex-grow: 6;
+    margin-right: 5px;
+    padding: 5px;
+    font-family: inherit;
+}
+.Comments ul li form button {
+    flex-grow: 1;
+}
+.Comments ul li .votes .voted {
+    font-weight: bold;
+    background-color: var(--light-accent);
+    border-radius: 3px;
+    border: 1px solid var(--dark-shade);
+    color: #222222;
+}
+
 .ErrorMessage {
     border: solid 2px var(--dark-accent);
     border-radius: 3px;
     background-color: pink;
     margin-top: 5px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 }
 .ErrorMessage div {
     font-size: 2em;
+}
+
+.Login form {
+    display: flex;
+    flex-direction: column;
+}
+.Login form label {
+    margin: 10px 0;
+}
+.Login form label select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+.Login form button {
+    padding: 10px;
+    background-color: rgb(56, 150, 56);
+    color: var(--light-shade);
+    font-weight: bold;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
 }
 
 /* PADDING FOR STRUCTURAL COMPONENTS */
@@ -186,13 +250,18 @@ body {
 .Article,
 .Comments,
 .Comments li,
-.ErrorMessage {
+.ErrorMessage,
+.Login {
     padding: 10px;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 700px) {
     .Logo {
         text-align: left;
+    }
+
+    .Nav {
+        align-items: center;
     }
     .Nav ul li {
         border-left: 2px var(--dark-shade) solid;
@@ -220,6 +289,10 @@ body {
         width: 100%;
     }
 
+    .article-parent {
+        display: flex;
+    }
+
     .Article section {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -242,7 +315,10 @@ body {
     .Nav,
     .Articles,
     .Article,
-    .Comments {
+    .Comments,
+    .Comments li,
+    .ErrorMessage,
+    .Login {
         padding-left: 20px;
         padding-right: 20px;
     }

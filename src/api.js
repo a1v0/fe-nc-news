@@ -6,7 +6,7 @@ const apiConnection = axios.create({
 
 export const getArticles = (topic_id) => {
     return apiConnection
-        .get("/articles?sort_by=article_id&order=desc", {
+        .get("/articles?sort_by=article_id&order=desc&limit=11", {
             params: { topic: topic_id }
         })
         .then(({ data: { articles } }) => {
@@ -50,7 +50,33 @@ export const getComments = (article_id) => {
         });
 };
 
+export const postComment = (article_id, comment) => {
+    return apiConnection
+        .post(`/articles/${article_id}/comments`, comment)
+        .then(({ data: { comment } }) => {
+            return comment;
+        })
+        .catch((err) => {
+            console.log("ERROR!", err);
+        });
+};
+
 export const addVoteToComment = (comment_id, isUpvote) => {
     const inc_votes = isUpvote ? 1 : -1;
-    return apiConnection.patch(`comments/${comment_id}`, { inc_votes });
+    return apiConnection
+        .patch(`comments/${comment_id}`, { inc_votes })
+        .catch((err) => {
+            console.log("ERROR!", err);
+        });
+};
+
+export const getUsers = () => {
+    return apiConnection
+        .get("/users")
+        .then(({ data: { users } }) => {
+            return users;
+        })
+        .catch((err) => {
+            console.log("ERROR!", err);
+        });
 };
