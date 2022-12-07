@@ -147,7 +147,7 @@ export default function Comments({ article_id }) {
                                                 );
                                             }}
                                         >
-                                            delete
+                                            [delete]
                                         </Link>
                                     ) : null}
                                 </p>

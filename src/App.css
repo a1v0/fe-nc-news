@@ -180,6 +180,12 @@ body {
     padding-bottom: 3px;
     margin-bottom: 3px;
 }
+.Comments ul li .title .delete {
+    float: right;
+    font-family: Consolas;
+    text-decoration: none;
+    color: var(--dark-accent);
+}
 .Comments ul li .votes {
     display: flex;
     flex-wrap: wrap;
