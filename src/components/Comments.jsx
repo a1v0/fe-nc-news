@@ -52,19 +52,21 @@ export default function Comments({ article_id }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        event.target[1].disabled = true;
-        postComment(article_id, {
-            article_id,
-            body: event.target[0].value,
-            username: loggedInUser.username
-        }).then((comment) => {
-            comment.created_at = Date.now();
-            comment.voteLimiter = 0;
-            const updatedComments = [comment, ...comments];
-            setComments(updatedComments);
-            event.target[0].value = "";
-            event.target[1].disabled = false;
-        });
+        if (event.target[0].value) {
+            event.target[1].disabled = true;
+            postComment(article_id, {
+                article_id,
+                body: event.target[0].value,
+                username: loggedInUser.username
+            }).then((comment) => {
+                comment.created_at = Date.now();
+                comment.voteLimiter = 0;
+                const updatedComments = [comment, ...comments];
+                setComments(updatedComments);
+                event.target[0].value = "";
+                event.target[1].disabled = false;
+            });
+        }
     };
 
     return (
@@ -87,8 +89,8 @@ export default function Comments({ article_id }) {
                                     handleSubmit(event);
                                 }}
                             >
-                                <textarea></textarea>
-                                <button type="submit">Post Comment</button>
+                                <textarea placeholder="Add a comment..."></textarea>
+                                <button type="submit">Add Comment</button>
                             </form>
                         )}
                     </li>
@@ -151,6 +153,7 @@ export default function Comments({ article_id }) {
                                         }}
                                     >
                                         ⬆️like
+                                        {comment.voteLimiter === 1 ? "d" : ""}
                                     </Link>
                                     <Link
                                         className={
@@ -179,6 +182,7 @@ export default function Comments({ article_id }) {
                                         }}
                                     >
                                         ⬇️dislike
+                                        {comment.voteLimiter === -1 ? "d" : ""}
                                     </Link>
                                     <p>
                                         {comment.votes} vote

@@ -77,6 +77,17 @@ body {
     margin-left: 10px;
 }
 
+.Footer {
+    background-color: var(--light-accent);
+}
+.Footer a {
+    text-decoration: none;
+    color: var(--dark-shade);
+}
+.Footer a:hover {
+    text-decoration: underline;
+}
+
 .Articles {
     list-style-type: none;
     display: block;
@@ -129,17 +140,6 @@ body {
     font-size: 1.1em;
 }
 
-.Footer {
-    background-color: var(--light-accent);
-}
-.Footer a {
-    text-decoration: none;
-    color: var(--dark-shade);
-}
-.Footer a:hover {
-    text-decoration: underline;
-}
-
 .Comments {
     background-color: var(--brand-colour);
     border-radius: 5px;
@@ -177,9 +177,15 @@ body {
     flex-grow: 1;
     text-decoration: none;
     color: var(--dark-shade);
+    padding: 3px;
+    width: 100px;
+    border: 1px solid transparent;
 }
 .Comments ul li .votes p {
     flex-grow: 2;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: right;
 }
 .Comments ul li form {
     display: flex;
@@ -195,6 +201,10 @@ body {
 }
 .Comments ul li .votes .voted {
     font-weight: bold;
+    background-color: var(--light-accent);
+    border-radius: 3px;
+    border: 1px solid var(--dark-shade);
+    color: #222222;
 }
 
 .ErrorMessage {
@@ -245,7 +255,7 @@ body {
     padding: 10px;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 700px) {
     .Logo {
         text-align: left;
     }
@@ -277,6 +287,10 @@ body {
     }
     .Articles li img {
         width: 100%;
+    }
+
+    .article-parent {
+        display: flex;
     }
 
     .Article section {
