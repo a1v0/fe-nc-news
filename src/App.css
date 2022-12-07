@@ -144,6 +144,16 @@ body {
     padding: 10px 0;
     font-size: 1.1em;
 }
+.Article .related-content {
+    background-color: var(--light-accent);
+    padding: 10px;
+    border-radius: 5px;
+}
+.Article .related-content ul li {
+    list-style-type: square;
+    list-style-position: inside;
+    margin-top: 5px;
+}
 
 .Comments {
     background-color: var(--brand-colour);

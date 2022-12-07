@@ -4,9 +4,9 @@ const apiConnection = axios.create({
     baseURL: "https://long-yak-baseball-cap.cyclic.app/api/"
 });
 
-export const getArticles = (topic_id) => {
+export const getArticles = (topic_id, limit = 11) => {
     return apiConnection
-        .get("/articles?sort_by=article_id&order=desc&limit=11", {
+        .get(`/articles?sort_by=article_id&order=desc&limit=${limit}`, {
             params: { topic: topic_id }
         })
         .then(({ data: { articles } }) => {
