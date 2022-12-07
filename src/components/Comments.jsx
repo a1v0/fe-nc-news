@@ -4,7 +4,7 @@ import { addVoteToComment, getComments, postComment } from "../api";
 import { UserContext } from "../contexts/UserProvider";
 
 export default function Comments({ article_id }) {
-    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+    const { loggedInUser } = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useState([]);

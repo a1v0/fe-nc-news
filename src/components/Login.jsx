@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { getUsers } from "../api";
 
 export default function Login() {
-    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+    const { setLoggedInUser } = useContext(UserContext);
 
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
