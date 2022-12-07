@@ -38,6 +38,8 @@ export default function Articles() {
                 ref.current.selectedIndex = 3;
             } else if (sortCriterion === "author") {
                 ref.current.selectedIndex = 5;
+            } else if (sortCriterion === "comment_count") {
+                ref.current.selectedIndex = 7;
             } else {
                 ref.current.selectedIndex = 0;
             }
@@ -48,6 +50,8 @@ export default function Articles() {
                 ref.current.selectedIndex = 4;
             } else if (sortCriterion === "author") {
                 ref.current.selectedIndex = 6;
+            } else if (sortCriterion === "comment_count") {
+                ref.current.selectedIndex = 8;
             } else {
                 ref.current.selectedIndex = 0;
             }
@@ -69,6 +73,9 @@ export default function Articles() {
             case "Author":
                 sortCriterion = "author";
                 break;
+            case "Comments":
+                sortCriterion = "comment_count";
+                break;
             default:
                 break;
         }
@@ -89,6 +96,8 @@ export default function Articles() {
                 <option>Title (descending)</option>
                 <option>Author (ascending)</option>
                 <option>Author (descending)</option>
+                <option>Comments (ascending)</option>
+                <option>Comments (descending)</option>
             </select>
             <ul>
                 {!isLoading ? (
