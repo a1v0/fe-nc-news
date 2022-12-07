@@ -6,7 +6,7 @@ const apiConnection = axios.create({
 
 export const getArticles = (topic_id) => {
     return apiConnection
-        .get("/articles?sort_by=article_id&order=desc", {
+        .get("/articles?sort_by=article_id&order=desc&limit=11", {
             params: { topic: topic_id }
         })
         .then(({ data: { articles } }) => {
