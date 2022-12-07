@@ -1,6 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { addVoteToComment, getComments, postComment } from "../api";
+import {
+    addVoteToComment,
+    deleteComment,
+    getComments,
+    postComment
+} from "../api";
 import { UserContext } from "../contexts/UserProvider";
 
 export default function Comments({ article_id }) {
@@ -69,6 +74,15 @@ export default function Comments({ article_id }) {
         }
     };
 
+    const handleDelete = (comment_id) => {
+        deleteComment(comment_id).then(() => {
+            const updatedComments = comments.filter((comment) => {
+                return comment.comment_id !== comment_id;
+            });
+            setComments(updatedComments);
+        });
+    };
+
     return (
         <div className="Comments">
             <h2>Have your say!</h2>
@@ -123,6 +137,19 @@ export default function Comments({ article_id }) {
                                 <p className="title">
                                     <strong>{comment.author}</strong>,{" "}
                                     {elapsedTimeString}
+                                    {loggedInUser?.username ===
+                                    comment.author ? (
+                                        <Link
+                                            className="delete"
+                                            onClick={() => {
+                                                handleDelete(
+                                                    comment.comment_id
+                                                );
+                                            }}
+                                        >
+                                            delete
+                                        </Link>
+                                    ) : null}
                                 </p>
                                 <p className="comment">{comment.body}</p>
                                 <div className="votes">

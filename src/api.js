@@ -61,6 +61,12 @@ export const postComment = (article_id, comment) => {
         });
 };
 
+export const deleteComment = (comment_id) => {
+    return apiConnection.delete(`/comments/${comment_id}`).catch((err) => {
+        console.log("ERROR!", err);
+    });
+};
+
 export const addVoteToComment = (comment_id, isUpvote) => {
     const inc_votes = isUpvote ? 1 : -1;
     return apiConnection
