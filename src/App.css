@@ -13,6 +13,34 @@
     box-sizing: border-box;
 }
 
+/* DISPLAY: FLEX */
+.Nav,
+.Nav ul li,
+.Nav .user-greeting,
+.Footer,
+.Article .author-and-topic,
+.Comments ul li .votes,
+.Comments ul li form,
+.ErrorMessage,
+.Login,
+.Login form {
+    display: flex;
+}
+.Nav ul li,
+.Footer,
+.Login,
+.Login form {
+    flex-direction: column;
+}
+
+/* DISPLAY: BLOCK */
+.Logo,
+.Logo a,
+.Articles ul,
+.Article section {
+    display: block;
+}
+
 body {
     min-width: 320px;
     font-family: Arial, Helvetica, sans-serif;
@@ -25,13 +53,9 @@ body {
         sans-serif;
     background-color: var(--light-accent);
     text-transform: uppercase;
-    display: block;
     height: fit-content;
     font-size: 2rem;
     text-align: center;
-}
-.Logo a {
-    display: block;
 }
 .Logo a span {
     background-color: black;
@@ -53,15 +77,11 @@ body {
 /* NAV */
 .Nav {
     background-color: var(--brand-colour);
-    display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .Nav ul li {
     list-style-type: none;
-    /* padding: 5px 0; */
-    display: flex;
-    flex-direction: column;
 }
 .Nav ul li a {
     color: var(--dark-accent);
@@ -78,7 +98,6 @@ body {
     font-size: 1.2em;
 }
 .Nav .user-greeting {
-    display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -96,8 +115,6 @@ body {
 /* FOOTER */
 .Footer {
     background-color: var(--light-accent);
-    display: flex;
-    flex-direction: column;
 }
 .Footer a {
     text-decoration: none;
@@ -110,7 +127,6 @@ body {
 /* ARTICLES */
 .Articles ul {
     list-style-type: none;
-    display: block;
 }
 .Articles ul li {
     margin: 10px 0;
@@ -138,7 +154,6 @@ body {
     font-size: 1.5em;
 }
 .Article .author-and-topic {
-    display: flex;
     justify-content: space-between;
     border-bottom: 2px solid var(--light-accent);
     margin-bottom: 10px;
@@ -150,9 +165,6 @@ body {
 }
 .Article .author-and-topic strong {
     color: var(--dark-shade);
-}
-.Article section {
-    display: block;
 }
 .Article section img {
     width: 100%;
@@ -204,7 +216,6 @@ body {
     color: var(--dark-accent);
 }
 .Comments ul li .votes {
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
@@ -227,9 +238,6 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     text-align: right;
-}
-.Comments ul li form {
-    display: flex;
 }
 .Comments ul li form textarea {
     flex-grow: 6;
@@ -254,7 +262,6 @@ body {
     border-radius: 3px;
     background-color: pink;
     margin-top: 5px;
-    display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -263,16 +270,8 @@ body {
 }
 
 /* LOGIN PAGE */
-.Login {
-    display: flex;
-    flex-direction: column;
-}
 .Login section {
     margin-bottom: 20px;
-}
-.Login form {
-    display: flex;
-    flex-direction: column;
 }
 .Login form label {
     margin: 10px 0;
