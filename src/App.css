@@ -281,6 +281,15 @@ body {
     border-radius: 5px;
 }
 
+.NotFound p {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.NotFound p.emoji {
+    text-align: center;
+    font-size: 50vw;
+}
+
 /* PADDING FOR STRUCTURAL COMPONENTS */
 .Footer,
 .Logo,
@@ -290,7 +299,8 @@ body {
 .Comments,
 .Comments li,
 .ErrorMessage,
-.Login {
+.Login,
+.NotFound {
     padding: 10px;
 }
 
@@ -382,13 +392,20 @@ body {
         padding-left: 15px;
     }
 
+    /* 404 PAGE */
+    .NotFound {
+        text-align: center;
+    }
+    .NotFound p.emoji {
+        font-size: 20em;
+    }
+
     /* PADDING FOR STRUCTURAL COMPONENTS */
     .Articles,
     .Article,
     .Comments,
     .Comments li,
-    .ErrorMessage,
-    .Login {
+    .ErrorMessage {
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -396,7 +413,8 @@ body {
     .Footer,
     .Logo,
     .Nav,
-    .Login {
+    .Login,
+    .NotFound {
         padding-left: 40px;
         padding-right: 40px;
     }

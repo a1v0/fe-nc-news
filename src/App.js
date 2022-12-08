@@ -20,7 +20,7 @@ function App() {
                     <Route path="/topics/:topic_id" element={<Articles />} />
                     <Route path="/articles/:article_id" element={<Article />} />
                     <Route path="/user/login" element={<Login />} />
-                    <Route path="/404" element={<NotFound />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </UserProvider>
             <Footer />
