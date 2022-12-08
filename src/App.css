@@ -107,8 +107,11 @@ body {
     background-color: var(--light-shade);
 }
 .Nav .sign-up-link a {
-    color: var(--dark-accent);
     font-size: 1.2em;
+}
+.Nav .sign-up-link a,
+.Nav .user-greeting a {
+    color: var(--dark-accent);
 }
 .Nav .user-greeting {
     align-items: center;
