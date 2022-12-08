@@ -5,6 +5,7 @@ import Comments from "./Comments";
 import cookingPhoto from "../misc/maarten-van-den-heuvel-EzH46XCDQRY-unsplash.jpg";
 import codingPhoto from "../misc/markus-spiske-cvBBO4PzWPg-unsplash.jpg";
 import footballPhoto from "../misc/thomas-serer-r-xKieMqL34-unsplash.jpg";
+import placeholderPhoto from "../misc/elementor-placeholder-image.jpg";
 
 export default function Article() {
     const { article_id } = useParams();
@@ -42,10 +43,11 @@ export default function Article() {
             photoAlt = "messy computer code";
             break;
         case "football":
-        // if anything goes awry, the default will render a football photo
-        default:
             photoSrc = footballPhoto;
             photoAlt = "football stadium";
+        default:
+            photoSrc = placeholderPhoto;
+            photoAlt = "placeholder";
             break;
     }
 
