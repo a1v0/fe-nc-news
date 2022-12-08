@@ -4,6 +4,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const initialLoggedInState =
+        !window.sessionStorage.loggedInUser ||
         Object.keys(JSON.parse(window.sessionStorage.loggedInUser)).length === 0
             ? null
             : JSON.parse(window.sessionStorage.loggedInUser);
