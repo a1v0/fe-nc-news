@@ -25,7 +25,6 @@ export default function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(users[event.target[0].options.selectedIndex]);
         setLoggedInUser(users[event.target[0].options.selectedIndex]);
     };
 
