@@ -15,13 +15,17 @@ export default function Comments({ article_id }) {
     const [comments, setComments] = useState([]);
     useEffect(() => {
         setIsLoading(true);
-        getComments(article_id).then((comments) => {
-            comments = comments.map((comment) => {
-                comment.voteLimiter = 0; // used to prevent a user from up/downvoting by more than one per load
-                return comment;
+        getComments(article_id)
+            .then((comments) => {
+                comments = comments.map((comment) => {
+                    comment.voteLimiter = 0; // used to prevent a user from up/downvoting by more than one per load
+                    return comment;
+                });
+                setComments(comments);
+            })
+            .catch((err) => {
+                console.log("ERROR!", err);
             });
-            setComments(comments);
-        });
     }, [article_id]);
 
     useEffect(() => {
@@ -48,7 +52,8 @@ export default function Comments({ article_id }) {
                 updatedCommentError[comment_id] = false;
                 setCommentError(updatedCommentError);
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log("ERROR!", err);
                 const updatedCommentError = { ...commentError };
                 updatedCommentError[comment_id] = true;
                 setCommentError(updatedCommentError);
@@ -63,14 +68,18 @@ export default function Comments({ article_id }) {
                 article_id,
                 body: event.target[0].value,
                 username: loggedInUser.username
-            }).then((comment) => {
-                comment.created_at = Date.now();
-                comment.voteLimiter = 0;
-                const updatedComments = [comment, ...comments];
-                setComments(updatedComments);
-                event.target[0].value = "";
-                event.target[1].disabled = false;
-            });
+            })
+                .then((comment) => {
+                    comment.created_at = Date.now();
+                    comment.voteLimiter = 0;
+                    const updatedComments = [comment, ...comments];
+                    setComments(updatedComments);
+                    event.target[0].value = "";
+                    event.target[1].disabled = false;
+                })
+                .catch((err) => {
+                    console.log("ERROR!", err);
+                });
         }
     };
 
@@ -87,7 +96,8 @@ export default function Comments({ article_id }) {
                 updatedCommentError[comment_id] = false;
                 setCommentError(updatedCommentError);
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log("ERROR!", err);
                 const updatedCommentError = { ...commentError };
                 updatedCommentError[comment_id] = true;
                 setCommentError(updatedCommentError);

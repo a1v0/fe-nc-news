@@ -11,9 +11,13 @@ export default function Nav() {
 
     useEffect(() => {
         setIsLoading(true);
-        getTopics().then((topics) => {
-            setTopics(topics);
-        });
+        getTopics()
+            .then((topics) => {
+                setTopics(topics);
+            })
+            .catch((err) => {
+                console.log("ERROR!", err);
+            });
     }, []);
 
     useEffect(() => {

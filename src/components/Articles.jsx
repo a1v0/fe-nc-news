@@ -20,17 +20,15 @@ export default function Articles() {
         setIsLoading(true);
         const sortCriterion = sortParams.get("sort");
         const sortOrder = sortParams.get("order");
-        getArticles(topic_id, undefined, sortCriterion, sortOrder).then(
-            (articles) => {
-                if (articles) {
-                    setIsContentNotFound(false);
-                    // articles only set if an articles object is passed. Any other response would be some sort of error
-                    setArticles(articles);
-                } else {
-                    setIsContentNotFound(true);
-                }
-            }
-        );
+        getArticles(topic_id, undefined, sortCriterion, sortOrder)
+            .then((articles) => {
+                setIsContentNotFound(false);
+                setArticles(articles);
+            })
+            .catch((err) => {
+                console.log("ERROR!", err);
+                setIsContentNotFound(true);
+            });
         setCorrectSortSelectorIndex(sortCriterion, sortOrder);
     }, [topic_id, sortParams]);
 

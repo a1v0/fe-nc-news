@@ -19,22 +19,16 @@ export default function Article() {
         setIsLoading(true);
         getArticle(article_id)
             .then((article) => {
-                if (article) {
-                    setIsContentNotFound(false);
-                    // articles only set if an articles object is passed. Any other response would be some sort of error
-                    setArticle(article);
-                    return article;
-                } else {
-                    return Promise.reject();
-                }
-            })
-            .then((article) => {
+                setIsContentNotFound(false);
+                setArticle(article);
+
                 return getArticles(article.topic, 4);
             })
             .then((articles) => {
                 setRelatedArticles(articles);
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log("ERROR!", err);
                 setIsContentNotFound(true);
             });
     }, [article_id]);
