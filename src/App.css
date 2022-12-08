@@ -374,6 +374,9 @@ body {
     .article-parent {
         display: flex;
     }
+    Article {
+        flex-shrink: 3;
+    }
     .Article section img {
         margin: 15px 15px 0 30px;
         float: right;
@@ -383,6 +386,7 @@ body {
 
     /* COMMENTS */
     .Comments {
+        flex-shrink: 4;
         margin-right: 40px;
     }
     .Comments ul li .votes p {
