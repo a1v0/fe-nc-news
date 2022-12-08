@@ -2,8 +2,8 @@
     /* COLOUR PALETTE */
     --light-shade: #f4f3ed;
     --light-accent: #eba84a;
-    --brand-colour: #abaebb;
-    --dark-accent: #a0685a;
+    --brand-colour: #c6cada;
+    --dark-accent: #7a483a;
     --dark-shade: #363736;
 }
 
@@ -19,6 +19,7 @@ body {
     background-color: var(--light-shade);
 }
 
+/* LOGO */
 .Logo {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
@@ -49,6 +50,7 @@ body {
     margin-right: 0;
 }
 
+/* NAV */
 .Nav {
     background-color: var(--brand-colour);
     display: flex;
@@ -80,6 +82,7 @@ body {
     margin-left: 10px;
 }
 
+/* FOOTER */
 .Footer {
     background-color: var(--light-accent);
     display: flex;
@@ -93,6 +96,7 @@ body {
     text-decoration: underline;
 }
 
+/* ARTICLES */
 .Articles ul {
     list-style-type: none;
     display: block;
@@ -118,6 +122,7 @@ body {
     padding: 5px;
 }
 
+/* ARTICLE */
 .Article h1 {
     font-size: 1.5em;
 }
@@ -158,6 +163,7 @@ body {
     margin-top: 5px;
 }
 
+/* COMMENTS */
 .Comments {
     background-color: var(--brand-colour);
     border-radius: 5px;
@@ -231,6 +237,7 @@ body {
     color: #222222;
 }
 
+/* COMMENTS ERROR MESSAGE */
 .ErrorMessage {
     border: solid 2px var(--dark-accent);
     border-radius: 3px;
@@ -244,6 +251,7 @@ body {
     font-size: 2em;
 }
 
+/* LOGIN PAGE */
 .Login {
     display: flex;
     flex-direction: column;
@@ -287,6 +295,7 @@ body {
 }
 
 @media only screen and (min-width: 700px) {
+    /* LOGO */
     .Logo {
         text-align: left;
         font-size: 2.5rem;
@@ -298,6 +307,7 @@ body {
         width: 3rem;
     }
 
+    /* NAV */
     .Nav {
         align-items: center;
     }
@@ -311,11 +321,13 @@ body {
         padding-left: 0;
     }
 
+    /* FOOTER */
     .Footer {
         flex-direction: row-reverse;
         justify-content: space-between;
     }
 
+    /* ARTICLES */
     .Articles ul {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -332,10 +344,10 @@ body {
         width: 100%;
     }
 
+    /* ARTICLE */
     .article-parent {
         display: flex;
     }
-
     .Article section img {
         margin: 15px 15px 0 30px;
         float: right;
@@ -343,6 +355,7 @@ body {
         box-shadow: 0px 0px 30px var(--dark-accent);
     }
 
+    /* COMMENTS */
     .Comments {
         margin-right: 20px;
     }
@@ -354,6 +367,7 @@ body {
         font-size: 0.9em;
     }
 
+    /* LOGIN */
     .Login {
         flex-direction: row;
     }
