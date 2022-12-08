@@ -45,6 +45,7 @@ export default function Article() {
         case "football":
             photoSrc = footballPhoto;
             photoAlt = "football stadium";
+            break;
         default:
             photoSrc = placeholderPhoto;
             photoAlt = "placeholder";
