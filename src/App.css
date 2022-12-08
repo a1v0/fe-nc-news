@@ -66,6 +66,9 @@ body {
     font-weight: bold;
     text-transform: capitalize;
 }
+.Nav ul li a:hover {
+    text-decoration: none;
+}
 .Nav .user-greeting {
     display: flex;
     align-items: center;
@@ -367,7 +370,7 @@ body {
 
     /* COMMENTS */
     .Comments {
-        margin-right: 20px;
+        margin-right: 40px;
     }
     .Comments ul li .votes p {
         text-align: left;
@@ -402,7 +405,6 @@ body {
 
     /* PADDING FOR STRUCTURAL COMPONENTS */
     .Articles,
-    .Article,
     .Comments,
     .Comments li,
     .ErrorMessage {
@@ -413,6 +415,7 @@ body {
     .Footer,
     .Logo,
     .Nav,
+    .Article,
     .Login,
     .NotFound {
         padding-left: 40px;
