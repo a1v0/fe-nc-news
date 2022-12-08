@@ -309,6 +309,9 @@ body {
 }
 
 /* LOGIN PAGE */
+h1.Login {
+    text-align: center;
+}
 .Login section {
     margin-bottom: 20px;
 }
