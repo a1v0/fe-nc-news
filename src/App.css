@@ -3,7 +3,7 @@
     --light-shade: #f4f3ed;
     --light-accent: #eba84a;
     --mid-grey-shade: #c6cada;
-    --dark-accent: #7a483a;
+    --dark-accent: #794233;
     --dark-shade: #363736;
 }
 
@@ -204,6 +204,13 @@ body {
     list-style-type: square;
     list-style-position: inside;
     margin-top: 5px;
+}
+.Article .related-content ul li a,
+.Article .related-content ul li a:visited {
+    list-style-type: square;
+    list-style-position: inside;
+    margin-top: 5px;
+    color: var(--dark-shade);
 }
 
 /* COMMENTS */
