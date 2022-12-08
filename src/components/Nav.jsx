@@ -25,7 +25,7 @@ export default function Nav() {
     }, [topics]);
 
     return (
-        <div className="Nav">
+        <div className="Nav" role={"navigation"}>
             {!isLoading ? (
                 <ul>
                     {topics.map((topic) => {
@@ -36,9 +36,14 @@ export default function Nav() {
                                     className={({ isActive }) => {
                                         return isActive ? "selected-topic" : "";
                                     }}
-                                >
-                                    {topic.slug}
-                                </NavLink>
+                                    children={({ isActive }) => {
+                                        return isActive ? (
+                                            <h1>{topic.slug}</h1>
+                                        ) : (
+                                            <>{topic.slug}</>
+                                        );
+                                    }}
+                                />
                             </li>
                         );
                     })}
