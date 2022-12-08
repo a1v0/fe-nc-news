@@ -43,8 +43,8 @@ export default function Nav() {
                 <p>Loading...</p>
             )}
             {!loggedInUser ? (
-                <div>
-                    <Link to="/user/login">Login or Sign Up!</Link>
+                <div className="sign-up-link">
+                    <Link to="/user/login">Login / Sign Up</Link>
                 </div>
             ) : (
                 <div className="user-greeting">
