@@ -20,7 +20,10 @@ function App() {
                     <Route path="/topics/:topic_id" element={<Articles />} />
                     <Route path="/articles/:article_id" element={<Article />} />
                     <Route path="/user/login" element={<Login />} />
-                    <Route path="*" element={<NotFound />} />
+                    <Route
+                        path="*"
+                        element={<NotFound missingPiece="page" />}
+                    />
                 </Routes>
             </UserProvider>
             <Footer />

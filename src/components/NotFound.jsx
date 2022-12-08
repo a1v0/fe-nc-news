@@ -3,10 +3,7 @@ import React from "react";
 export default function NotFound({ missingPiece }) {
     return (
         <main className="NotFound">
-            <h1>
-                Whoopsie! We couldn't find that{" "}
-                {missingPiece ? missingPiece : "page"}!
-            </h1>
+            <h1>Whoopsie! We couldn't find that {missingPiece}!</h1>
             <p>
                 Sorry to be a flat tyre, but you've got yourself a good
                 ol'-fashioned 404.
