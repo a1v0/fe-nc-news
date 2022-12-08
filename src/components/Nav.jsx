@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { getTopics } from "../api";
 import { UserContext } from "../contexts/UserProvider";
 
@@ -27,9 +27,14 @@ export default function Nav() {
                     {topics.map((topic) => {
                         return (
                             <li key={topic.slug}>
-                                <Link to={`/topics/${topic.slug}`}>
+                                <NavLink
+                                    to={`/topics/${topic.slug}`}
+                                    className={({ isActive }) => {
+                                        return isActive ? "selected-topic" : "";
+                                    }}
+                                >
                                     {topic.slug}
-                                </Link>
+                                </NavLink>
                             </li>
                         );
                     })}

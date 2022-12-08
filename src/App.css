@@ -58,16 +58,19 @@ body {
 }
 .Nav ul li {
     list-style-type: none;
-    padding: 5px 0;
-    display: block;
+    /* padding: 5px 0; */
+    display: flex;
+    flex-direction: column;
 }
 .Nav ul li a {
     color: var(--dark-accent);
     font-weight: bold;
     text-transform: capitalize;
+    padding: 5px;
 }
-.Nav ul li a:hover {
-    text-decoration: none;
+.Nav ul li a:hover,
+.Nav ul li a.selected-topic {
+    background-color: var(--light-shade);
 }
 .Nav .user-greeting {
     display: flex;
@@ -332,6 +335,7 @@ body {
     .Nav ul li:nth-child(1) {
         border-left: none;
         padding-left: 0;
+        margin-left: -5px;
     }
 
     /* FOOTER */
