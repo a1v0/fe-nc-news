@@ -33,73 +33,100 @@ export default function Articles() {
     const setCorrectSortSelectorIndex = (sortCriterion, sortOrder) => {
         if (!sortCriterion) {
             ref.current.selectedIndex = 0;
-        } else if (!sortOrder || sortOrder === "asc") {
-            if (sortCriterion === "created_at") {
-                ref.current.selectedIndex = 1;
-            } else if (sortCriterion === "title") {
-                ref.current.selectedIndex = 3;
-            } else if (sortCriterion === "author") {
-                ref.current.selectedIndex = 5;
-            } else if (sortCriterion === "comment_count") {
-                ref.current.selectedIndex = 7;
-            } else {
-                ref.current.selectedIndex = 0;
-            }
-        } else if (sortOrder === "desc") {
-            if (sortCriterion === "created_at") {
-                ref.current.selectedIndex = 2;
-            } else if (sortCriterion === "title") {
-                ref.current.selectedIndex = 4;
-            } else if (sortCriterion === "author") {
-                ref.current.selectedIndex = 6;
-            } else if (sortCriterion === "comment_count") {
-                ref.current.selectedIndex = 8;
-            } else {
+        } else {
+            for (let i = 1; i < ref.current.length; ++i) {
+                const currentValue = JSON.parse(ref.current[i].value);
+                if (
+                    currentValue.sort_by === sortCriterion &&
+                    currentValue.order === sortOrder
+                ) {
+                    ref.current.selectedIndex = i;
+                    break;
+                }
                 ref.current.selectedIndex = 0;
             }
         }
+        return;
     };
 
     const handleSort = (event) => {
-        const selectedItem = event.target.value;
-        const sortOrder = selectedItem.includes("ascending") ? "asc" : "desc";
-        let sortCriterion;
-
-        switch (selectedItem.split(" ")[0]) {
-            case "Date":
-                sortCriterion = "created_at";
-                break;
-            case "Title":
-                sortCriterion = "title";
-                break;
-            case "Author":
-                sortCriterion = "author";
-                break;
-            case "Comments":
-                sortCriterion = "comment_count";
-                break;
-            default:
-                break;
+        if (event.target.value) {
+            const selectedItem = JSON.parse(event.target.value);
+            setSortParams({
+                sort: selectedItem.sort_by,
+                order: selectedItem.order
+            });
         }
-
-        setSortParams({
-            sort: sortCriterion,
-            order: sortOrder
-        });
     };
 
     return (
         <main className="Articles">
             <select onChange={handleSort} ref={ref}>
-                <option>Sort articles by...</option>
-                <option>Date (ascending)</option>
-                <option>Date (descending)</option>
-                <option>Title (ascending)</option>
-                <option>Title (descending)</option>
-                <option>Author (ascending)</option>
-                <option>Author (descending)</option>
-                <option>Comments (ascending)</option>
-                <option>Comments (descending)</option>
+                <option value="">Sort articles by...</option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "created_at",
+                        order: "asc"
+                    })}
+                >
+                    Date (ascending)
+                </option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "created_at",
+                        order: "desc"
+                    })}
+                >
+                    Date (descending)
+                </option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "title",
+                        order: "asc"
+                    })}
+                >
+                    Title (ascending)
+                </option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "title",
+                        order: "desc"
+                    })}
+                >
+                    Title (descending)
+                </option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "author",
+                        order: "asc"
+                    })}
+                >
+                    Author (ascending)
+                </option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "author",
+                        order: "desc"
+                    })}
+                >
+                    Author (descending)
+                </option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "comment_count",
+                        order: "asc"
+                    })}
+                >
+                    Comments (ascending)
+                </option>
+                <option
+                    value={JSON.stringify({
+                        sort_by: "comment_count",
+                        order: "desc"
+                    })}
+                >
+                    Comments (descending)
+                </option>
             </select>
             <ul>
                 {!isLoading ? (
@@ -117,6 +144,7 @@ export default function Articles() {
                             case "football":
                                 photoSrc = footballPhoto;
                                 photoAlt = "football stadium";
+                                break;
                             default:
                                 photoSrc = placeholderPhoto;
                                 photoAlt = "placeholder";
