@@ -153,9 +153,7 @@ export default function Comments({ article_id }) {
                                         <Link
                                             className="delete"
                                             onClick={(event) => {
-                                                // DEAR TUTOR, IF YOU SEE THIS!!!
-                                                // I couldn't think of another way to disable my delete button, in the event that there is some lag from the server
-                                                event.target.onclick = () => {};
+                                                event.target.onclick = () => {}; // I couldn't think of another way to disable my delete button, in the event that there is some lag from the server
                                                 handleDelete(
                                                     comment.comment_id
                                                 );
