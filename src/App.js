@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Logo from "./components/Logo";
 import Nav from "./components/Nav";
+import NotFound from "./components/NotFound";
 import { UserProvider } from "./contexts/UserProvider";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/topics/:topic_id" element={<Articles />} />
                     <Route path="/articles/:article_id" element={<Article />} />
                     <Route path="/user/login" element={<Login />} />
+                    <Route path="/404" element={<NotFound />} />
                 </Routes>
             </UserProvider>
             <Footer />
