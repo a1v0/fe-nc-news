@@ -6,8 +6,8 @@ const apiConnection = axios.create({
 
 export const getArticles = (topic_id, limit = 11, sort_by, order) => {
     return apiConnection
-        .get(`/articles?&limit=${limit}`, {
-            params: { topic: topic_id, sort_by, order }
+        .get(`/articles`, {
+            params: { limit, topic: topic_id, sort_by, order }
         })
         .then(({ data: { articles } }) => {
             return articles;
