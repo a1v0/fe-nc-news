@@ -159,7 +159,8 @@ body {
 }
 .Articles select {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
+    font-family: inherit;
 }
 
 /* ARTICLE */
@@ -228,6 +229,9 @@ body {
     text-decoration: none;
     color: var(--dark-accent);
 }
+.Comments ul li .comment {
+    white-space: pre-wrap;
+}
 .Comments ul li .votes {
     flex-wrap: wrap;
     justify-content: space-around;
@@ -251,14 +255,24 @@ body {
     margin-left: 10px;
     margin-right: 10px;
 }
+.Comments ul li form {
+    flex-wrap: wrap;
+}
 .Comments ul li form textarea {
     flex-grow: 6;
-    margin-right: 5px;
+    max-width: 100%;
+    margin: 2px;
     padding: 5px;
     font-family: inherit;
 }
 .Comments ul li form button {
     flex-grow: 1;
+    padding: 5px;
+    min-height: 30px;
+    margin: 2px;
+    border: 2px solid var(--dark-shade);
+    border-radius: 5px;
+    font-family: inherit;
 }
 .Comments ul li .votes .voted {
     font-weight: bold;
@@ -357,6 +371,14 @@ body {
     }
 
     /* ARTICLES */
+    .Articles select {
+        width: 30%;
+        min-width: 300px;
+        display: block;
+        margin: 0px auto;
+        border: var(--dark-shade) 2px solid;
+        border-radius: 3px;
+    }
     .Articles ul {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -377,19 +399,20 @@ body {
     .article-parent {
         display: flex;
     }
-    Article {
-        flex-shrink: 3;
-    }
     .Article section img {
         margin: 15px 15px 0 30px;
         float: right;
         width: 40%;
         box-shadow: 0px 0px 30px var(--dark-accent);
     }
+    .Article .related-content {
+        padding: 15px;
+    }
 
     /* COMMENTS */
     .Comments {
-        flex-shrink: 4;
+        width: 30%;
+        min-width: 30%;
         margin-right: 40px;
     }
     .Comments ul li .votes p {
