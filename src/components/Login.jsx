@@ -10,9 +10,13 @@ export default function Login() {
 
     useEffect(() => {
         setIsLoading(true);
-        getUsers().then((users) => {
-            setUsers(users);
-        });
+        getUsers()
+            .then((users) => {
+                setUsers(users);
+            })
+            .catch((err) => {
+                console.log("ERROR!", err);
+            });
     }, []);
 
     useEffect(() => {
@@ -21,6 +25,7 @@ export default function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(users[event.target[0].options.selectedIndex]);
         setLoggedInUser(users[event.target[0].options.selectedIndex]);
     };
 

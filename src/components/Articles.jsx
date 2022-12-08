@@ -5,12 +5,14 @@ import cookingPhoto from "../misc/maarten-van-den-heuvel-EzH46XCDQRY-unsplash.jp
 import codingPhoto from "../misc/markus-spiske-cvBBO4PzWPg-unsplash.jpg";
 import footballPhoto from "../misc/thomas-serer-r-xKieMqL34-unsplash.jpg";
 import placeholderPhoto from "../misc/elementor-placeholder-image.jpg";
+import NotFound from "./NotFound";
 
 export default function Articles() {
     const { topic_id } = useParams();
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortParams, setSortParams] = useSearchParams();
+    const [isContentNotFound, setIsContentNotFound] = useState(false);
 
     const ref = useRef(null);
 
@@ -18,11 +20,15 @@ export default function Articles() {
         setIsLoading(true);
         const sortCriterion = sortParams.get("sort");
         const sortOrder = sortParams.get("order");
-        getArticles(topic_id, undefined, sortCriterion, sortOrder).then(
-            (articles) => {
+        getArticles(topic_id, undefined, sortCriterion, sortOrder)
+            .then((articles) => {
+                setIsContentNotFound(false);
                 setArticles(articles);
-            }
-        );
+            })
+            .catch((err) => {
+                console.log("ERROR!", err);
+                setIsContentNotFound(true);
+            });
         setCorrectSortSelectorIndex(sortCriterion, sortOrder);
     }, [topic_id, sortParams]);
 
@@ -130,41 +136,47 @@ export default function Articles() {
             </select>
             <ul>
                 {!isLoading ? (
-                    articles.map((article) => {
-                        let photoSrc, photoAlt;
-                        switch (article.topic) {
-                            case "cooking":
-                                photoSrc = cookingPhoto;
-                                photoAlt = "colourful cookery";
-                                break;
-                            case "coding":
-                                photoSrc = codingPhoto;
-                                photoAlt = "messy computer code";
-                                break;
-                            case "football":
-                                photoSrc = footballPhoto;
-                                photoAlt = "football stadium";
-                                break;
-                            default:
-                                photoSrc = placeholderPhoto;
-                                photoAlt = "placeholder";
-                                break;
-                        }
-                        return (
-                            <li key={article.article_id}>
-                                <Link to={`/articles/${article.article_id}`}>
-                                    <img src={photoSrc} alt={photoAlt} />
-                                    <br />
-                                    <strong>{article.title}</strong> <i>by</i>{" "}
-                                    {article.author}
-                                    <br />
-                                    <span className="Articles--topic">
-                                        #{article.topic}
-                                    </span>
-                                </Link>
-                            </li>
-                        );
-                    })
+                    isContentNotFound ? (
+                        <NotFound missingPiece="topic" />
+                    ) : (
+                        articles.map((article) => {
+                            let photoSrc, photoAlt;
+                            switch (article.topic) {
+                                case "cooking":
+                                    photoSrc = cookingPhoto;
+                                    photoAlt = "colourful cookery";
+                                    break;
+                                case "coding":
+                                    photoSrc = codingPhoto;
+                                    photoAlt = "messy computer code";
+                                    break;
+                                case "football":
+                                    photoSrc = footballPhoto;
+                                    photoAlt = "football stadium";
+                                    break;
+                                default:
+                                    photoSrc = placeholderPhoto;
+                                    photoAlt = "placeholder";
+                                    break;
+                            }
+                            return (
+                                <li key={article.article_id}>
+                                    <Link
+                                        to={`/articles/${article.article_id}`}
+                                    >
+                                        <img src={photoSrc} alt={photoAlt} />
+                                        <br />
+                                        <strong>{article.title}</strong>{" "}
+                                        <i>by</i> {article.author}
+                                        <br />
+                                        <span className="Articles--topic">
+                                            #{article.topic}
+                                        </span>
+                                    </Link>
+                                </li>
+                            );
+                        })
+                    )
                 ) : (
                     <p>Loading articles...</p>
                 )}

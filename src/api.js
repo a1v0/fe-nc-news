@@ -11,9 +11,6 @@ export const getArticles = (topic_id, limit = 11, sort_by, order) => {
         })
         .then(({ data: { articles } }) => {
             return articles;
-        })
-        .catch((err) => {
-            console.log("ERROR!", err);
         });
 };
 
@@ -22,21 +19,13 @@ export const getArticle = (article_id) => {
         .get(`/articles/${article_id}`)
         .then(({ data: { article } }) => {
             return article;
-        })
-        .catch((err) => {
-            console.log("ERROR!", err);
         });
 };
 
 export const getTopics = () => {
-    return apiConnection
-        .get("/topics")
-        .then(({ data: { topics } }) => {
-            return topics;
-        })
-        .catch((err) => {
-            console.log("ERROR!", err);
-        });
+    return apiConnection.get("/topics").then(({ data: { topics } }) => {
+        return topics;
+    });
 };
 
 export const getComments = (article_id) => {
@@ -44,9 +33,6 @@ export const getComments = (article_id) => {
         .get(`/articles/${article_id}/comments`)
         .then(({ data: { comments } }) => {
             return comments;
-        })
-        .catch((err) => {
-            console.log("ERROR!", err);
         });
 };
 
@@ -55,34 +41,20 @@ export const postComment = (article_id, comment) => {
         .post(`/articles/${article_id}/comments`, comment)
         .then(({ data: { comment } }) => {
             return comment;
-        })
-        .catch((err) => {
-            console.log("ERROR!", err);
         });
 };
 
 export const deleteComment = (comment_id) => {
-    return apiConnection.delete(`/comments/${comment_id}`).catch((err) => {
-        console.log("ERROR!", err);
-    });
+    return apiConnection.delete(`/comments/${comment_id}`);
 };
 
 export const addVoteToComment = (comment_id, isUpvote) => {
     const inc_votes = isUpvote ? 1 : -1;
-    return apiConnection
-        .patch(`comments/${comment_id}`, { inc_votes })
-        .catch((err) => {
-            console.log("ERROR!", err);
-        });
+    return apiConnection.patch(`comments/${comment_id}`, { inc_votes });
 };
 
 export const getUsers = () => {
-    return apiConnection
-        .get("/users")
-        .then(({ data: { users } }) => {
-            return users;
-        })
-        .catch((err) => {
-            console.log("ERROR!", err);
-        });
+    return apiConnection.get("/users").then(({ data: { users } }) => {
+        return users;
+    });
 };
