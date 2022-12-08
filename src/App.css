@@ -71,6 +71,12 @@ body {
     height: fit-content;
     font-size: 2rem;
 }
+.Logo h1,
+.Nav h1 {
+    font-size: inherit;
+    font-weight: inherit;
+    display: inherit;
+}
 .Logo a span {
     background-color: black;
     color: white;
