@@ -75,12 +75,23 @@ export default function Comments({ article_id }) {
     };
 
     const handleDelete = (comment_id) => {
-        deleteComment(comment_id).then(() => {
-            const updatedComments = comments.filter((comment) => {
-                return comment.comment_id !== comment_id;
+        deleteComment(comment_id)
+            .then(() => {
+                const updatedComments = comments.filter((comment) => {
+                    return comment.comment_id !== comment_id;
+                });
+                setComments(updatedComments);
+            })
+            .then(() => {
+                const updatedCommentError = { ...commentError };
+                updatedCommentError[comment_id] = false;
+                setCommentError(updatedCommentError);
+            })
+            .catch(() => {
+                const updatedCommentError = { ...commentError };
+                updatedCommentError[comment_id] = true;
+                setCommentError(updatedCommentError);
             });
-            setComments(updatedComments);
-        });
     };
 
     return (
@@ -141,7 +152,10 @@ export default function Comments({ article_id }) {
                                     comment.author ? (
                                         <Link
                                             className="delete"
-                                            onClick={() => {
+                                            onClick={(event) => {
+                                                // DEAR TUTOR, IF YOU SEE THIS!!!
+                                                // I couldn't think of another way to disable my delete button, in the event that there is some lag from the server
+                                                event.target.onclick = () => {};
                                                 handleDelete(
                                                     comment.comment_id
                                                 );

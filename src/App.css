@@ -358,6 +358,10 @@ body {
     .Comments ul li .votes p {
         text-align: left;
     }
+    .Comments ul li .title .delete {
+        font-weight: bold;
+        font-size: 0.9em;
+    }
 
     .Login {
         flex-direction: row;
