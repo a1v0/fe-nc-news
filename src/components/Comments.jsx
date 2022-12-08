@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { addVoteToComment, getComments, postComment } from "../api";
+import {
+    addVoteToComment,
+    deleteComment,
+    getComments,
+    postComment
+} from "../api";
 import { UserContext } from "../contexts/UserProvider";
 
 export default function Comments({ article_id }) {
-    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+    const { loggedInUser } = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useState([]);
@@ -69,6 +74,26 @@ export default function Comments({ article_id }) {
         }
     };
 
+    const handleDelete = (comment_id) => {
+        deleteComment(comment_id)
+            .then(() => {
+                const updatedComments = comments.filter((comment) => {
+                    return comment.comment_id !== comment_id;
+                });
+                setComments(updatedComments);
+            })
+            .then(() => {
+                const updatedCommentError = { ...commentError };
+                updatedCommentError[comment_id] = false;
+                setCommentError(updatedCommentError);
+            })
+            .catch(() => {
+                const updatedCommentError = { ...commentError };
+                updatedCommentError[comment_id] = true;
+                setCommentError(updatedCommentError);
+            });
+    };
+
     return (
         <div className="Comments">
             <h2>Have your say!</h2>
@@ -123,6 +148,20 @@ export default function Comments({ article_id }) {
                                 <p className="title">
                                     <strong>{comment.author}</strong>,{" "}
                                     {elapsedTimeString}
+                                    {loggedInUser?.username ===
+                                    comment.author ? (
+                                        <Link
+                                            className="delete"
+                                            onClick={(event) => {
+                                                event.target.onclick = () => {}; // I couldn't think of another way to disable my delete button, in the event that there is some lag from the server
+                                                handleDelete(
+                                                    comment.comment_id
+                                                );
+                                            }}
+                                        >
+                                            [delete]
+                                        </Link>
+                                    ) : null}
                                 </p>
                                 <p className="comment">{comment.body}</p>
                                 <div className="votes">
