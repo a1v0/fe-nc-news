@@ -273,12 +273,15 @@ body {
 }
 .Comments ul li form textarea {
     flex-grow: 6;
+    font-size: 1em;
     max-width: 100%;
     margin: 2px;
     padding: 5px;
     font-family: inherit;
 }
 .Comments ul li form button {
+    font-size: 0.9em;
+    background-color: #e6ebff;
     flex-grow: 1;
     padding: 5px;
     min-height: 30px;
