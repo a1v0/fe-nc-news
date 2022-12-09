@@ -430,6 +430,9 @@ h1.Login {
     .article-parent {
         display: flex;
     }
+    .Article {
+        width: 100%;
+    }
     .Article section img {
         margin: 15px 15px 0 30px;
         float: right;
