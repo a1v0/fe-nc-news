@@ -134,10 +134,22 @@ body {
 /* FOOTER */
 .Footer {
     background-color: var(--light-accent);
+    color: var(--dark-shade);
+    font-size: 1.1em;
+}
+.Footer p {
+    padding: 5px 0;
 }
 .Footer a {
-    text-decoration: none;
+    font-weight: bold;
     color: var(--dark-shade);
+    text-decoration: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.Footer a:first-child {
+    padding-left: 0px;
+    border-right: 2px var(--dark-shade) solid;
 }
 .Footer a:hover {
     text-decoration: underline;

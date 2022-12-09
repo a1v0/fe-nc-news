@@ -9,7 +9,8 @@ export default function Footer() {
                 Copyright &copy; 2022 <strong>AVC News</strong>.
             </p>
             <p>
-                <Link to="/">Home</Link> | <Link to="/user/login">Login</Link>
+                <Link to="/">Home</Link>
+                <Link to="/user/login">Login</Link>
             </p>
         </footer>
     );
