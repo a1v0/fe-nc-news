@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Logo() {
     const LogoLettering = () => {
@@ -14,7 +14,6 @@ export default function Logo() {
     };
     return (
         <div role={"banner"} className="Logo" aria-label={"AVC News logo"}>
-            {/* <Link to="/"></Link> */}
             <NavLink
                 to="/"
                 children={({ isActive }) => {
