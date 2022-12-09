@@ -67,125 +67,132 @@ export default function Articles() {
 
     return (
         <main className="Articles">
-            <select
-                id="sort-selector"
-                onChange={handleSort}
-                ref={ref}
-                aria-label={"Sort articles by..."}
-            >
-                <option value="">Sort articles by...</option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "created_at",
-                        order: "asc"
-                    })}
-                >
-                    Date (ascending)
-                </option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "created_at",
-                        order: "desc"
-                    })}
-                >
-                    Date (descending)
-                </option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "title",
-                        order: "asc"
-                    })}
-                >
-                    Title (ascending)
-                </option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "title",
-                        order: "desc"
-                    })}
-                >
-                    Title (descending)
-                </option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "author",
-                        order: "asc"
-                    })}
-                >
-                    Author (ascending)
-                </option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "author",
-                        order: "desc"
-                    })}
-                >
-                    Author (descending)
-                </option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "comment_count",
-                        order: "asc"
-                    })}
-                >
-                    Comments (ascending)
-                </option>
-                <option
-                    value={JSON.stringify({
-                        sort_by: "comment_count",
-                        order: "desc"
-                    })}
-                >
-                    Comments (descending)
-                </option>
-            </select>
-            <ul>
-                {!isLoading ? (
-                    isContentNotFound ? (
-                        <NotFound missingPiece="topic" />
-                    ) : (
-                        articles.map((article) => {
-                            let photoSrc, photoAlt;
-                            switch (article.topic) {
-                                case "cooking":
-                                    photoSrc = cookingPhoto;
-                                    photoAlt = "colourful cookery";
-                                    break;
-                                case "coding":
-                                    photoSrc = codingPhoto;
-                                    photoAlt = "messy computer code";
-                                    break;
-                                case "football":
-                                    photoSrc = footballPhoto;
-                                    photoAlt = "football stadium";
-                                    break;
-                                default:
-                                    photoSrc = placeholderPhoto;
-                                    photoAlt = "placeholder";
-                                    break;
-                            }
-                            return (
-                                <li key={article.article_id}>
-                                    <Link
-                                        to={`/articles/${article.article_id}`}
-                                    >
-                                        <img src={photoSrc} alt={photoAlt} />
-                                        <br />
-                                        <strong>{article.title}</strong>{" "}
-                                        <i>by</i> {article.author}
-                                        <br />
-                                        <span className="Articles--topic">
-                                            #{article.topic}
-                                        </span>
-                                    </Link>
-                                </li>
-                            );
-                        })
-                    )
-                ) : (
-                    <p>Loading articles...</p>
-                )}
-            </ul>
+            {isContentNotFound ? (
+                <NotFound missingPiece="topic" />
+            ) : (
+                <>
+                    <select
+                        id="sort-selector"
+                        onChange={handleSort}
+                        ref={ref}
+                        aria-label={"Sort articles by..."}
+                    >
+                        <option value="">Sort articles by...</option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "created_at",
+                                order: "asc"
+                            })}
+                        >
+                            Date (ascending)
+                        </option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "created_at",
+                                order: "desc"
+                            })}
+                        >
+                            Date (descending)
+                        </option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "title",
+                                order: "asc"
+                            })}
+                        >
+                            Title (ascending)
+                        </option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "title",
+                                order: "desc"
+                            })}
+                        >
+                            Title (descending)
+                        </option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "author",
+                                order: "asc"
+                            })}
+                        >
+                            Author (ascending)
+                        </option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "author",
+                                order: "desc"
+                            })}
+                        >
+                            Author (descending)
+                        </option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "comment_count",
+                                order: "asc"
+                            })}
+                        >
+                            Comments (ascending)
+                        </option>
+                        <option
+                            value={JSON.stringify({
+                                sort_by: "comment_count",
+                                order: "desc"
+                            })}
+                        >
+                            Comments (descending)
+                        </option>
+                    </select>
+                    <ul>
+                        {!isLoading ? (
+                            articles.map((article) => {
+                                let photoSrc, photoAlt;
+                                switch (article.topic) {
+                                    case "cooking":
+                                        photoSrc = cookingPhoto;
+                                        photoAlt = "colourful cookery";
+                                        break;
+                                    case "coding":
+                                        photoSrc = codingPhoto;
+                                        photoAlt = "messy computer code";
+                                        break;
+                                    case "football":
+                                        photoSrc = footballPhoto;
+                                        photoAlt = "football stadium";
+                                        break;
+                                    default:
+                                        photoSrc = placeholderPhoto;
+                                        photoAlt = "placeholder";
+                                        break;
+                                }
+                                return (
+                                    <li key={article.article_id}>
+                                        <Link
+                                            to={`/articles/${article.article_id}`}
+                                        >
+                                            <img
+                                                src={photoSrc}
+                                                alt={photoAlt}
+                                            />
+                                            <br />
+                                            <strong>
+                                                {article.title}
+                                            </strong>{" "}
+                                            <i>by</i> {article.author}
+                                            <br />
+                                            <span className="Articles--topic">
+                                                #{article.topic}
+                                            </span>
+                                        </Link>
+                                    </li>
+                                );
+                            })
+                        ) : (
+                            <p>Loading articles...</p>
+                        )}
+                    </ul>
+                </>
+            )}
         </main>
     );
 }

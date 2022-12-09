@@ -134,10 +134,22 @@ body {
 /* FOOTER */
 .Footer {
     background-color: var(--light-accent);
+    color: var(--dark-shade);
+    font-size: 1.1em;
+}
+.Footer p {
+    padding: 5px 0;
 }
 .Footer a {
-    text-decoration: none;
+    font-weight: bold;
     color: var(--dark-shade);
+    text-decoration: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.Footer a:first-child {
+    padding-left: 0px;
+    border-right: 2px var(--dark-shade) solid;
 }
 .Footer a:hover {
     text-decoration: underline;
@@ -238,7 +250,7 @@ body {
 }
 .Comments ul li .title .delete {
     float: right;
-    font-family: Consolas;
+    font-family: Consolas, "Courier New", Courier, monospace;
     text-decoration: none;
     color: var(--dark-accent);
 }
@@ -273,12 +285,15 @@ body {
 }
 .Comments ul li form textarea {
     flex-grow: 6;
+    font-size: 1em;
     max-width: 100%;
     margin: 2px;
     padding: 5px;
     font-family: inherit;
 }
 .Comments ul li form button {
+    font-size: 0.9em;
+    background-color: #e6ebff;
     flex-grow: 1;
     padding: 5px;
     min-height: 30px;
@@ -414,6 +429,9 @@ h1.Login {
     /* ARTICLE */
     .article-parent {
         display: flex;
+    }
+    .Article {
+        width: 100%;
     }
     .Article section img {
         margin: 15px 15px 0 30px;
