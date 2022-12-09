@@ -29,7 +29,7 @@ export default function Login() {
     };
 
     return (
-        <>
+        <main>
             <h1 className="Login">Log in to AVC News</h1>
             <article className="Login">
                 <section>
@@ -68,6 +68,6 @@ export default function Login() {
                     </p>
                 </section>
             </article>
-        </>
+        </main>
     );
 }
