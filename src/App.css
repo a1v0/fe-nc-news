@@ -238,7 +238,7 @@ body {
 }
 .Comments ul li .title .delete {
     float: right;
-    font-family: Consolas;
+    font-family: Consolas, inherit;
     text-decoration: none;
     color: var(--dark-accent);
 }
