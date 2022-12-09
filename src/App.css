@@ -3,7 +3,7 @@
     --light-shade: #f4f3ed;
     --light-accent: #eba84a;
     --mid-grey-shade: #c6cada;
-    --dark-accent: #7a483a;
+    --dark-accent: #794233;
     --dark-shade: #363736;
 }
 
@@ -70,6 +70,12 @@ body {
     text-transform: uppercase;
     height: fit-content;
     font-size: 2rem;
+}
+.Logo h1,
+.Nav h1 {
+    font-size: inherit;
+    font-weight: inherit;
+    display: inherit;
 }
 .Logo a span {
     background-color: black;
@@ -199,6 +205,13 @@ body {
     list-style-position: inside;
     margin-top: 5px;
 }
+.Article .related-content ul li a,
+.Article .related-content ul li a:visited {
+    list-style-type: square;
+    list-style-position: inside;
+    margin-top: 5px;
+    color: var(--dark-shade);
+}
 
 /* COMMENTS */
 .Comments {
@@ -296,6 +309,9 @@ body {
 }
 
 /* LOGIN PAGE */
+h1.Login {
+    text-align: center;
+}
 .Login section {
     margin-bottom: 20px;
 }

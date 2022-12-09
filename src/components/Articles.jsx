@@ -67,7 +67,12 @@ export default function Articles() {
 
     return (
         <main className="Articles">
-            <select onChange={handleSort} ref={ref}>
+            <select
+                id="sort-selector"
+                onChange={handleSort}
+                ref={ref}
+                aria-label={"Sort articles by..."}
+            >
                 <option value="">Sort articles by...</option>
                 <option
                     value={JSON.stringify({
